@@ -1,0 +1,636 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+.bd-page {
+  background: #f8fafc;
+  min-height: 100vh;
+  font-family: "Inter", sans-serif;
+  color: #111827;
+  padding: 60px 40px 80px;
+}
+
+.bd-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  gap: 56px;
+  align-items: flex-start;
+}
+
+/* ── Loading / Error ── */
+.bd-loading {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bd-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #e5e7eb;
+  border-top-color: #A85D42; /* Zümrüt spinner */
+  border-radius: 50%;
+  animation: bdSpin 0.7s linear infinite;
+}
+
+.bd-mini-spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: bdSpin 0.7s linear infinite;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+@keyframes bdSpin { to { transform: rotate(360deg); } }
+
+.bd-error-text { color: #ef4444; font-size: 15px; }
+
+/* ── Cover Column ── */
+.bd-cover-col {
+  flex-shrink: 0;
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.bd-cover-wrap {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  background: linear-gradient(135deg, #e5e7eb, #d1d5db);
+  aspect-ratio: 2/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bd-cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.bd-cover-placeholder {
+  font-size: 48px;
+  color: #9ca3af;
+}
+
+.bd-cover-edit-btn {
+  position: absolute;
+  bottom: 0;
+  left: 0; right: 0;
+  background: rgba(168, 93, 66, 0.85); /* Kurumsal opak zümrüt */
+  color: white;
+  text-align: center;
+  padding: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: "Inter", sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.bd-cover-edit-btn:hover { background: rgba(168, 93, 66, 0.98); }
+
+/* ── Actions ── */
+.bd-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bd-btn-edit,
+.bd-btn-save,
+.bd-btn-cancel,
+.bd-btn-delete {
+  width: 100%;
+  height: 44px;
+  border-radius: 8px;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  border: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+/* Düzenle Butonu */
+.bd-btn-edit {
+  background: #A85D42;
+  border-color: #A85D42;
+  color: white;
+}
+.bd-btn-edit:hover {
+  background: #8E4B33;
+  border-color: #8E4B33;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(168, 93, 66, 0.2);
+}
+
+/* Kaydet Butonu */
+.bd-btn-save {
+  background: #8E4B33;
+  border-color: #8E4B33;
+  color: white;
+}
+.bd-btn-save:hover:not(:disabled) {
+  background: #6B3724;
+  border-color: #6B3724;
+  transform: translateY(-1px);
+}
+.bd-btn-save:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.bd-btn-cancel {
+  background: white;
+  border-color: #e5e7eb;
+  color: #374151;
+}
+.bd-btn-cancel:hover { background: #f9fafb; border-color: #d1d5db; }
+
+.bd-btn-delete {
+  background: white;
+  border-color: #fca5a5;
+  color: #dc2626;
+}
+.bd-btn-delete:hover:not(:disabled) {
+  background: #fef2f2;
+  border-color: #ef4444;
+}
+.bd-btn-delete:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* ── Info Column ── */
+.bd-info-col {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Kategori Etiketi (Maviden Yumuşak Yeşile) */
+.bd-category {
+  display: inline-block;
+  background: #F5E4D8;
+  color: #8E4B33;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 18px;
+}
+
+.bd-title {
+  font-family: "Playfair Display", serif;
+  font-size: 42px;
+  font-weight: 600;
+  color: #A85D42; /* Zümrüt başlık */
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.bd-title-input {
+  width: 100%;
+  font-family: "Playfair Display", serif;
+  font-size: 32px;
+  font-weight: 600;
+  color: #A85D42;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 10px 14px;
+  outline: none;
+  background: white;
+  margin-bottom: 32px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.bd-title-input:focus {
+  border-color: #A85D42;
+  box-shadow: 0 0 0 3px rgba(168, 93, 66, 0.1);
+}
+
+.bd-author {
+  font-size: 14px;
+  font-weight: 500;
+  color: #4b5563;
+  margin-top: 2px;
+  margin-bottom: 24px;
+}
+
+/* ── Sections ── */
+.bd-section {
+  margin-bottom: 36px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.bd-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.bd-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.bd-section-title {
+  font-family: "Playfair Display", serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: #A85D42; /* Bölüm alt başlıkları */
+  margin-bottom: 12px;
+}
+
+.bd-section-header .bd-section-title { margin-bottom: 0; }
+
+.bd-description {
+  font-size: 15px;
+  color: #4b5563;
+  line-height: 1.8;
+}
+
+.bd-desc-input {
+  width: 100%;
+  height: 140px;
+  background: white;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  color: #111827;
+  line-height: 1.6;
+  resize: none;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.bd-desc-input:focus {
+  border-color: #A85D42;
+  box-shadow: 0 0 0 3px rgba(168, 93, 66, 0.1);
+}
+
+/* Bölüm Ekle Butonu */
+.bd-btn-chapter {
+  padding: 8px 16px;
+  background: transparent;
+  border: 2px solid #A85D42;
+  border-radius: 8px;
+  color: #A85D42;
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.bd-btn-chapter:hover {
+  background: #A85D42;
+  color: white;
+  box-shadow: 0 4px 12px rgba(168, 93, 66, 0.15);
+}
+
+.bd-chapters-empty {
+  padding: 40px;
+  background: white;
+  border: 1px dashed #e5e7eb;
+  border-radius: 8px;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bd-spinner-sm {
+  width: 24px;
+  height: 24px;
+  border-width: 2px;
+  border-top-color: #A85D42;
+}
+
+/* Chapter List */
+.bd-chapter-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.bd-chapter-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  cursor: pointer;
+}
+
+.bd-chapter-item:hover {
+  border-color: #A85D42;
+  box-shadow: 0 4px 14px rgba(168, 93, 66, 0.06);
+  transform: translateX(4px);
+}
+
+.bd-chapter-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Bölüm Numarası Yuvarlağı */
+.bd-chapter-num {
+  width: 32px;
+  height: 32px;
+  background: #F5E4D8;
+  color: #A85D42;
+  border-radius: 50%;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.bd-chapter-title {
+  font-size: 15px;
+  font-weight: 500;
+  color: #1f2937;
+}
+
+.bd-chapter-actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.bd-chapter-edit,
+.bd-chapter-delete {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.bd-chapter-edit {
+  color: #6b7280;
+}
+
+.bd-chapter-edit:hover {
+  background: #F5E4D8;
+  color: #A85D42;
+}
+
+.bd-chapter-delete {
+  color: #9ca3af;
+}
+
+.bd-chapter-delete:hover:not(:disabled) {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.bd-chapter-delete:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ── Modal ── */
+.bd-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 16, 12, 0.45); /* Yeşil tonlu koyu overlay */
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.bd-modal {
+  background: white;
+  border-radius: 16px;
+  padding: 36px 40px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+  animation: slideUp 0.25s cubic-bezier(0.16,1,0.3,1);
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.bd-modal h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 22px;
+  color: #A85D42;
+  margin-bottom: 12px;
+}
+
+.bd-modal p {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+
+.bd-modal-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.bd-modal-actions .bd-btn-cancel,
+.bd-modal-actions .bd-btn-delete {
+  flex: 1;
+}
+
+/* ── Toast ── */
+.bd-toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: "Inter", sans-serif;
+  white-space: nowrap;
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), opacity 0.4s;
+  opacity: 0;
+  z-index: 999;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+.bd-toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+.bd-toast.success {
+  background: #f0fdf4;
+  border: 1px solid #86efac;
+  color: #166534;
+}
+
+.bd-toast.error {
+  background: #fef2f2;
+  border: 1px solid #fca5a5;
+  color: #991b1b;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .bd-page { padding: 24px 20px 60px; }
+  .bd-container { flex-direction: column; gap: 32px; }
+  .bd-cover-col { width: 100%; max-width: 280px; margin: 0 auto; }
+  .bd-actions { flex-direction: row; }
+  .bd-actions .bd-btn-edit,
+  .bd-actions .bd-btn-save,
+  .bd-actions .bd-btn-cancel,
+  .bd-actions .bd-btn-delete { flex: 1; }
+  .bd-title { font-size: 32px; }
+}
+
+/* ================= KOYU MOD (DARK MODE) AYARLARI ================= */
+[data-theme='dark'] .bd-page { background: #1C1411; color: #f8fafc; }
+[data-theme='dark'] .bd-cover-wrap { background: linear-gradient(135deg, #251B17, #1C1411); }
+[data-theme='dark'] .bd-btn-cancel { background: transparent; border-color: #3D2D26; color: #cbd5e1; }
+[data-theme='dark'] .bd-btn-cancel:hover { background: #3D2D26; }
+[data-theme='dark'] .bd-btn-delete { background: transparent; border-color: #991b1b; color: #fca5a5; }
+[data-theme='dark'] .bd-btn-delete:hover:not(:disabled) { background: #7f1d1d; }
+
+[data-theme='dark'] .bd-category { background: rgba(217, 123, 93, 0.15); color: #D97B5D; }
+[data-theme='dark'] .bd-title { color: #D97B5D; }
+[data-theme='dark'] .bd-title-input { background: #1C1411; color: #f8fafc; border-color: #3D2D26; }
+[data-theme='dark'] .bd-title-input:focus { background: #251B17; border-color: #D97B5D; }
+[data-theme='dark'] .bd-section { border-bottom-color: #3D2D26; }
+[data-theme='dark'] .bd-section-title { color: #f8fafc; }
+[data-theme='dark'] .bd-description { color: #cbd5e1; }
+[data-theme='dark'] .bd-author { color: #94a3b8; }
+
+[data-theme='dark'] .bd-desc-input { background: #1C1411; color: #f8fafc; border-color: #3D2D26; }
+[data-theme='dark'] .bd-desc-input:focus { background: #251B17; border-color: #D97B5D; }
+
+[data-theme='dark'] .bd-btn-chapter { border-color: #D97B5D; color: #D97B5D; }
+[data-theme='dark'] .bd-btn-chapter:hover { background: #D97B5D; color: #1C1411; }
+
+/* Düzenle/Kaydet Butonları Koyu Mod */
+[data-theme='dark'] .bd-btn-edit { background: transparent; border-color: #D97B5D; color: #D97B5D; }
+[data-theme='dark'] .bd-btn-edit:hover { background: #D97B5D; color: #1C1411; box-shadow: 0 4px 14px rgba(217, 123, 93, 0.2); }
+[data-theme='dark'] .bd-btn-save { background: #8E4B33; border-color: #8E4B33; color: white; }
+[data-theme='dark'] .bd-btn-save:hover:not(:disabled) { background: #6B3724; }
+
+[data-theme='dark'] .bd-chapters-empty { background: #251B17; border-color: #3D2D26; color: #94a3b8; }
+[data-theme='dark'] .bd-chapter-item { background: #251B17; border-color: #3D2D26; }
+[data-theme='dark'] .bd-chapter-item:hover { border-color: #D97B5D; }
+[data-theme='dark'] .bd-chapter-num { background: rgba(217, 123, 93, 0.15); color: #D97B5D; }
+[data-theme='dark'] .bd-chapter-title { color: #f8fafc; }
+[data-theme='dark'] .bd-chapter-edit { color: #94a3b8; }
+[data-theme='dark'] .bd-chapter-edit:hover { background: rgba(217, 123, 93, 0.15); color: #D97B5D; }
+[data-theme='dark'] .bd-chapter-delete { color: #6b7280; }
+[data-theme='dark'] .bd-chapter-delete:hover:not(:disabled) { background: #7f1d1d; color: #fca5a5; }
+
+[data-theme='dark'] .bd-modal { background: #251B17; border: 1px solid #3D2D26; }
+[data-theme='dark'] .bd-modal h3 { color: #D97B5D; }
+[data-theme='dark'] .bd-modal p { color: #cbd5e1; }
+
+[data-theme='dark'] .bd-toast.success { background: #064e3b; border-color: #065f46; color: #6ee7b7; }
+[data-theme='dark'] .bd-toast.error { background: #7f1d1d; border-color: #991b1b; color: #fca5a5; }
+
+
+/* CTA Read Button & Action */
+.bd-read-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #A85D42;
+  color: #FFFFFF;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 13px 24px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  margin-top: 14px;
+  margin-bottom: 14px;
+  box-shadow: 0 4px 14px rgba(168, 93, 66, 0.22);
+  transition: all 0.2s ease;
+}
+
+.bd-read-cta-btn:hover {
+  background: #8E4B33;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(168, 93, 66, 0.3);
+}
+
+.bd-chapter-read-action {
+  font-size: 13px;
+  font-weight: 600;
+  color: #A85D42;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+[data-theme='dark'] .bd-read-cta-btn {
+  background: #D97B5D;
+  color: #1C1411;
+}
+
+[data-theme='dark'] .bd-read-cta-btn:hover {
+  background: #E89073;
+}
+
+[data-theme='dark'] .bd-chapter-read-action {
+  color: #D97B5D;
+}
+
+
+/* ── Okunma Sayacı & Meta Rozetleri ── */
+.bd-meta-badges {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.bd-read-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #FBF5EF;
+  color: #A85D42;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid #EADCCF;
+}
+
+[data-theme='dark'] .bd-read-badge {
+  background: #241B17;
+  color: #E89073;
+  border-color: #3F3029;
+}

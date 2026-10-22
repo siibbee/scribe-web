@@ -1,0 +1,526 @@
+﻿/* ================= TEMEL DEĞİŞKENLER VE GENEL STİLLER ================= */
+body {
+  font-family: "Inter", sans-serif;
+}
+
+/* ================= HEADER (NAVBAR ANA GÖVDE) ================= */
+.header {
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 60px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  cursor: pointer;
+}
+
+.logo, .brand-name {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.header-right svg {
+  transition: color 0.2s;
+}
+
+/* ================= HAMBURGER İKONU ================= */
+.hamburger {
+  width: 24px;
+  height: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hamburger span {
+  height: 2px;
+  width: 100%;
+  border-radius: 2px;
+  transition: 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translateY(8px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-8px);
+}
+
+/* ================= SIDEBAR (KENAR MENÜ) ================= */
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -320px;
+  width: 300px;
+  height: 100vh;
+  padding: 70px 40px;
+  transition: 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+  z-index: 1001;
+  box-sizing: border-box;
+}
+
+.side-menu.open {
+  left: 0;
+}
+
+.close-btn {
+  position: absolute;
+  top: 28px;
+  right: 28px;
+  background: transparent;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  transition: transform 0.3s ease, color 0.3s;
+}
+
+.close-btn:hover {
+  transform: rotate(90deg);
+}
+
+.side-logo {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+}
+
+.side-divider {
+  height: 1px;
+  margin: 35px 0 45px 0;
+}
+
+.side-menu nav p {
+  font-size: 18px;
+  margin: 22px 0;
+  cursor: pointer;
+  transition: transform 0.3s, color 0.3s;
+  font-weight: 500;
+}
+
+.side-menu nav p:hover {
+  transform: translateX(6px);
+}
+
+/* ================= ARKA PLAN PERDESİ (OVERLAY) ================= */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: #000000;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.overlay.show {
+  opacity: 0.4;
+  pointer-events: auto;
+}
+
+/* ================= YENİ KİTAP EKLE BUTONU ================= */
+.new-book-btn {
+  margin-bottom: 40px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 15px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+/* ================= ARAMA FORMU ================= */
+.nav-search-form {
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  padding: 4px 12px;
+  min-width: 250px;
+  transition: all 0.3s;
+}
+
+.nav-search-form input {
+  border: none;
+  background: transparent;
+  outline: none;
+  flex: 1;
+  font-family: inherit;
+  font-size: 14px;
+  padding: 4px 0;
+}
+
+.search-close-icon {
+  font-size: 18px !important;
+  cursor: pointer;
+  margin-left: 8px;
+  transition: color 0.2s;
+}
+
+.search-close-icon:hover {
+  color: #ef4444 !important;
+}
+
+/* ================= ÇIKIŞ ONAY MODALI (LOGOUT MODAL) ================= */
+.nb-modal-overlay {
+  position: fixed;
+  inset: 0;
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  animation: nbFadeIn 0.2s ease-out;
+}
+
+.nb-modal {
+  padding: 32px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 380px;
+  text-align: center;
+  animation: nbSlideUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-sizing: border-box;
+}
+
+.nb-modal h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+.nb-modal p {
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+.nb-modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.nb-modal-actions button {
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex: 1;
+  height: 46px;
+}
+
+@keyframes nbFadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes nbSlideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+
+/* =========================================================================
+   ======================= THEME 1: LIGHT MODE (AÇIK MOD) ==================
+   ========================================================================= */
+[data-theme='light'] .header {
+  background: #ffffff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+[data-theme='light'] .logo,
+[data-theme='light'] .brand-name,
+[data-theme='light'] .header-right {
+  color: #A85D42;
+}
+
+[data-theme='light'] .header-right svg {
+  color: #A85D42;
+}
+
+[data-theme='light'] .hamburger span {
+  background: #A85D42;
+}
+
+[data-theme='light'] .header-left:hover .hamburger span {
+  background: #8E4B33;
+}
+
+[data-theme='light'] .side-menu {
+  background: #ffffff;
+  border-right: 1px solid rgba(0, 0, 0, 0.08);
+  color: #A85D42;
+}
+
+[data-theme='light'] .side-logo,
+[data-theme='light'] .close-btn {
+  color: #A85D42;
+}
+
+[data-theme='light'] .close-btn:hover {
+  color: #8E4B33;
+}
+
+[data-theme='light'] .side-divider {
+  background: #e2d7cd;
+}
+
+[data-theme='light'] .side-menu nav p {
+  color: #A85D42;
+}
+
+[data-theme='light'] .side-menu nav p:hover {
+  color: #8E4B33;
+}
+
+[data-theme='light'] .nav-search-form {
+  background: #ffffff;
+  border: 1.5px solid #A85D42;
+}
+
+[data-theme='light'] .nav-search-form input {
+  color: #A85D42;
+}
+
+/* --- Yeni Kitap Ekle Butonu (Açık Mod) --- */
+[data-theme='light'] .new-book-btn {
+  background-color: #A85D42;
+  color: #ffffff;
+  border: none;
+}
+
+[data-theme='light'] .new-book-btn:hover {
+  background-color: #8E4B33;
+  transform: translateY(-2px);
+}
+
+/* --- Çıkış Modalı (Açık Mod) --- */
+[data-theme='light'] .nb-modal-overlay {
+  background: rgba(168, 93, 66, 0.15);
+}
+
+[data-theme='light'] .nb-modal {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 10px 30px rgba(168, 93, 66, 0.06);
+}
+
+[data-theme='light'] .nb-modal h3 { color: #1f2937; }
+[data-theme='light'] .nb-modal p { color: #6b7280; }
+
+[data-theme='light'] .nb-btn-cancel {
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  color: #4b5563;
+}
+
+[data-theme='light'] .nb-btn-cancel:hover {
+  background: #e5e7eb;
+  color: #1f2937;
+}
+
+[data-theme='light'] .nb-btn-confirm {
+  background: #A85D42;
+  border: none;
+  color: #ffffff;
+}
+
+[data-theme='light'] .nb-btn-confirm:hover {
+  background: #8E4B33;
+  box-shadow: 0 4px 12px rgba(168, 93, 66, 0.15);
+}
+
+
+/* =========================================================================
+   ======================= THEME 2: DARK MODE (KOYU MOD) ===================
+   ========================================================================= */
+[data-theme='dark'] .header {
+  background: #1C1411; /* Derin Gece Yeşili */
+  border-bottom: 1px solid #3D2D26;
+}
+
+[data-theme='dark'] .logo,
+[data-theme='dark'] .brand-name,
+[data-theme='dark'] .side-logo {
+  color: #D97B5D; /* Parlak Zümrüt Dokunuş */
+}
+
+[data-theme='dark'] .header-right {
+  color: #F5E4D8;
+}
+
+[data-theme='dark'] .header-right svg {
+  color: #F5E4D8;
+}
+
+[data-theme='dark'] .hamburger span {
+  background: #F5E4D8;
+}
+
+[data-theme='dark'] .header-left:hover .hamburger span {
+  background: #D97B5D;
+}
+
+[data-theme='dark'] .side-menu {
+  background: #1C1411;
+  border-right: 1px solid #3D2D26;
+  color: #ffffff;
+}
+
+[data-theme='dark'] .close-btn {
+  color: #ffffff;
+}
+
+[data-theme='dark'] .close-btn:hover {
+  color: #D97B5D;
+}
+
+[data-theme='dark'] .side-divider {
+  background: #3D2D26;
+}
+
+[data-theme='dark'] .side-menu nav p {
+  color: #F5E4D8;
+}
+
+[data-theme='dark'] .side-menu nav p:hover {
+  color: #D97B5D;
+}
+
+[data-theme='dark'] .nav-search-form {
+  background: #251B17;
+  border: 1.5px solid #3D2D26;
+}
+
+[data-theme='dark'] .nav-search-form input {
+  color: #ffffff;
+}
+
+/* --- Yeni Kitap Ekle Butonu (Koyu Mod) --- */
+[data-theme='dark'] .new-book-btn {
+  background-color: transparent;
+  color: #D97B5D;
+  border: 2px solid #D97B5D;
+}
+
+[data-theme='dark'] .new-book-btn:hover {
+  background-color: #D97B5D;
+  color: #1C1411;
+  transform: translateY(-2px);
+}
+
+/* --- Çıkış Modalı (Koyu Mod) --- */
+[data-theme='dark'] .nb-modal-overlay {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+[data-theme='dark'] .nb-modal {
+  background: #251B17;
+  border: 1px solid #3D2D26;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme='dark'] .nb-modal h3 { color: #f8fafc; }
+[data-theme='dark'] .nb-modal p { color: #9ca3af; }
+
+[data-theme='dark'] .nb-btn-cancel {
+  background: #3D2D26;
+  border: 1px solid #4D3830;
+  color: #cbd5e1;
+}
+
+[data-theme='dark'] .nb-btn-cancel:hover {
+  background: #4D3830;
+  color: #f8fafc;
+}
+
+[data-theme='dark'] .nb-btn-confirm {
+  background: #D97B5D;
+  border: none;
+  color: #1C1411;
+}
+
+[data-theme='dark'] .nb-btn-confirm:hover {
+  background: #E89073;
+  box-shadow: 0 4px 12px rgba(217, 123, 93, 0.2);
+}
+
+
+/* Scribe Logo Styling */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.logo:hover {
+  opacity: 0.88;
+}
+
+.nav-logo-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 3px 10px rgba(168, 93, 66, 0.15);
+}
+
+.nav-logo-text {
+  font-family: "Playfair Display", serif;
+  font-weight: 800;
+  font-size: 23px;
+  letter-spacing: -0.3px;
+  color: #A85D42;
+}
+
+[data-theme='dark'] .nav-logo-text {
+  color: #D97B5D;
+}
+
+.side-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Playfair Display", serif;
+  font-weight: 800;
+  font-size: 22px;
+  color: #A85D42;
+  margin-bottom: 8px;
+}
+
+[data-theme='dark'] .side-logo {
+  color: #D97B5D;
+}
+
+.side-logo-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  object-fit: cover;
+}

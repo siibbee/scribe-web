@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+.dist/
+dist/
+dist-ssr/
+
+# Environment files with secrets
+story-app-backend/.env
+.env
+*.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# System & IDE
+.DS_Store
+.vscode/
+.idea/

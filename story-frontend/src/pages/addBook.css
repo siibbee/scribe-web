@@ -1,0 +1,303 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+.addbook-page {
+  background: #f8fafc;
+  min-height: 100vh;
+  font-family: "Inter", sans-serif;
+  color: #111827;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+}
+
+/* ── KARTI GENİŞLETTİK VE ORTALADIK ── */
+.addbook-card {
+  background: white;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.04);
+  padding: 52px 64px;
+  width: 100%;
+  max-width: 760px; /* 580px'den 760px'e çıkarılarak form ferahlatıldı */
+  animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.addbook-title {
+  font-family: "Playfair Display", serif;
+  font-size: 38px;
+  font-weight: 600;
+  color: #A85D42; /* Mavi yerine Projenin Asil Yeşili */
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+.addbook-subtitle {
+  font-size: 15px;
+  color: #6b7280;
+  margin-bottom: 44px;
+  line-height: 1.6;
+}
+
+.addbook-divider {
+  height: 1px;
+  background: #e5e7eb;
+  margin: 36px 0;
+}
+
+.addbook-field { margin-bottom: 26px; }
+
+.addbook-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #A85D42; /* Etiket renkleri zümrüt yapıldı */
+  margin-bottom: 10px;
+}
+
+/* ── Kapak Yükleme Alanı (Zümrüt Yeşili Uyarlaması) ── */
+.addbook-cover-zone {
+  border: 2px dashed #ccd7d2;
+  border-radius: 12px;
+  background: #fdfdfd;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  overflow: hidden;
+  min-height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.addbook-cover-zone:hover {
+  border-color: #A85D42; /* Hover'da zümrüt yeşili çerçeve */
+  background: #f4f7f5;    /* Çok hafif yeşilimsi arka plan banyosu */
+}
+
+.addbook-cover-zone.has-preview {
+  cursor: default;
+  border-style: solid;
+  border-color: #e5e7eb;
+  min-height: 240px;
+}
+
+.addbook-cover-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 32px;
+  text-align: center;
+}
+
+.addbook-cover-icon { font-size: 38px; }
+
+.addbook-cover-placeholder p {
+  font-size: 14px;
+  font-weight: 600;
+  color: #A85D42;
+}
+
+.addbook-cover-placeholder span {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.addbook-cover-preview {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  display: block;
+}
+
+.addbook-cover-remove {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(168, 93, 66, 0.85); /* Kaldırma butonu zümrüt transparan */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: "Inter", sans-serif;
+}
+
+.addbook-cover-remove:hover { background: #A85D42; }
+
+/* ── Girdi Alanları (Inputs) ── */
+.addbook-input,
+.addbook-textarea,
+.addbook-select {
+  width: 100%;
+  background: #f9fafb;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 8px;
+  color: #111827;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+  outline: none;
+  appearance: none;
+}
+
+.addbook-input,
+.addbook-select  { padding: 12px 16px; height: 48px; }
+.addbook-textarea { padding: 12px 16px; height: 140px; resize: none; line-height: 1.6; }
+
+/* Input Focus Efektleri (Maviden Zümrüte) */
+.addbook-input:focus,
+.addbook-textarea:focus,
+.addbook-select:focus {
+  border-color: #A85D42;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(168, 93, 66, 0.1); /* Zümrüt parlaması */
+}
+
+.addbook-input::placeholder,
+.addbook-textarea::placeholder { color: #9ca3af; }
+
+.addbook-select option { background: white; color: #111827; }
+
+.addbook-select-wrap { position: relative; }
+.addbook-select-wrap::after {
+  content: '▾';
+  position: absolute;
+  right: 16px; top: 50%;
+  transform: translateY(-50%);
+  color: #A85D42;
+  pointer-events: none;
+  font-size: 14px;
+}
+
+.addbook-char-count {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 6px;
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+.addbook-field-err {
+  font-size: 12px;
+  color: #ef4444;
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+/* ── Kaydet Butonu (Zümrüt Yeşili & Minimalist Efekt) ── */
+.addbook-btn {
+  width: 100%;
+  height: 52px;
+  background: #A85D42;
+  border: 2px solid #A85D42;
+  border-radius: 8px;
+  color: white;
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.25s, transform 0.15s, box-shadow 0.25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.addbook-btn:hover:not(:disabled) {
+  background: #8E4B33;
+  border-color: #8E4B33;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(168, 93, 66, 0.25);
+}
+
+.addbook-btn:active:not(:disabled) { transform: scale(0.99); }
+.addbook-btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+.addbook-spinner {
+  width: 16px; height: 16px;
+  border: 2px solid rgba(255,255,255,0.35);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Toast Mesajları ── */
+.addbook-toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: "Inter", sans-serif;
+  white-space: nowrap;
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), opacity 0.4s;
+  opacity: 0;
+  z-index: 999;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+.addbook-toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+.addbook-toast.success {
+  background: #f0fdf4;
+  border: 1px solid #86efac;
+  color: #166534;
+}
+
+.addbook-toast.error {
+  background: #fef2f2;
+  border: 1px solid #fca5a5;
+  color: #991b1b;
+}
+
+/* ── Mobil Uyum (Responsive) ── */
+@media (max-width: 768px) {
+  .addbook-card { padding: 40px 24px; }
+  .addbook-title { font-size: 30px; }
+}
+
+/* ================= KOYU MOD (DARK MODE) AYARLARI ================= */
+[data-theme='dark'] .addbook-page { background: #1C1411; color: #f8fafc; }
+[data-theme='dark'] .addbook-card { background: #251B17; border-color: #3D2D26; box-shadow: 0 4px 30px rgba(0,0,0,0.2); }
+[data-theme='dark'] .addbook-title { color: #D97B5D; } /* Koyu modda parlayan zümrüt yeşili */
+[data-theme='dark'] .addbook-subtitle { color: #94a3b8; }
+[data-theme='dark'] .addbook-divider { background: #3D2D26; }
+[data-theme='dark'] .addbook-label { color: #F5E4D8; }
+[data-theme='dark'] .addbook-cover-zone { background: #1C1411; border-color: #3D2D26; }
+[data-theme='dark'] .addbook-cover-zone:hover { background: #251B17; border-color: #D97B5D; }
+[data-theme='dark'] .addbook-cover-placeholder p { color: #D97B5D; }
+[data-theme='dark'] .addbook-cover-remove { background: #3D2D26; }
+[data-theme='dark'] .addbook-cover-remove:hover { background: #8E4B33; }
+
+[data-theme='dark'] .addbook-input,
+[data-theme='dark'] .addbook-textarea,
+[data-theme='dark'] .addbook-select { background: #1C1411; border-color: #3D2D26; color: #f8fafc; }
+
+[data-theme='dark'] .addbook-input:focus,
+[data-theme='dark'] .addbook-textarea:focus,
+[data-theme='dark'] .addbook-select:focus { background: #251B17; border-color: #D97B5D; box-shadow: 0 0 0 3px rgba(217, 123, 93, 0.15); }
+
+[data-theme='dark'] .addbook-select option { background: #251B17; color: #f8fafc; }
+[data-theme='dark'] .addbook-select-wrap::after { color: #D97B5D; }
+[data-theme='dark'] .addbook-btn { background: transparent; border-color: #D97B5D; color: #D97B5D; }
+[data-theme='dark'] .addbook-btn:hover:not(:disabled) { background: #D97B5D; color: #1C1411; box-shadow: 0 6px 20px rgba(217, 123, 93, 0.2); }
+
+[data-theme='dark'] .addbook-toast.success { background: #064e3b; border-color: #065f46; color: #6ee7b7; }
+[data-theme='dark'] .addbook-toast.error { background: #7f1d1d; border-color: #991b1b; color: #fca5a5; }
+

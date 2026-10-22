@@ -1,0 +1,235 @@
+﻿/* src/pages/auth.css */
+
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap");
+
+.auth-page {
+  min-height: 100vh;
+  background: #f8fafc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Inter", sans-serif;
+  padding: 40px 20px;
+  transition: background-color 0.3s;
+}
+
+.auth-container {
+  width: 100%;
+  max-width: 440px;
+}
+
+.auth-box {
+  background: white;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(168, 93, 66, 0.03);
+  border: 1px solid #e5e7eb;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.auth-box h1 {
+  font-family: "Playfair Display", serif;
+  font-size: 32px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.auth-box p {
+  font-size: 14px;
+  color: #6b7280;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+/* ── Form Elemanları ── */
+.form-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.form-group input {
+  width: 100%;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 11px 14px;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  color: #111827;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background: white;
+}
+
+.form-group input:focus {
+  border-color: #A85D42; /* Zümrüt focus */
+  box-shadow: 0 0 0 3px rgba(168, 93, 66, 0.08);
+}
+
+.form-group input::placeholder {
+  color: #9ca3af;
+}
+
+/* ── Hata Mesajı ── */
+.error-message {
+  background: #fef2f2;
+  border: 1px solid #fca5a5;
+  color: #b91c1c;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  text-align: center;
+  animation: authShake 0.3s ease-in-out;
+}
+
+@keyframes authShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+/* ── Gönder Butonu ── */
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  background: #A85D42; /* Zümrüt Ana Renk */
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background: #8E4B33;
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ── Alt Kısmı ── */
+.auth-footer {
+  margin-top: 24px;
+  margin-bottom: 0 !important;
+  font-size: 14px;
+  color: #4b5563 !important;
+  text-align: center;
+}
+
+.auth-footer span {
+  color: #A85D42;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 6px;
+  transition: color 0.2s;
+}
+
+.auth-footer span:hover {
+  text-decoration: underline;
+  color: #8E4B33;
+}
+
+/* ================= DARK MODE OVERRIDES ================= */
+[data-theme='dark'] .auth-page {
+  background: #1C1411; /* Derin Gece Yeşili */
+}
+
+[data-theme='dark'] .auth-box {
+  background: #251B17;
+  border-color: #3D2D26;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme='dark'] .auth-box h1 {
+  color: #f8fafc;
+}
+
+[data-theme='dark'] .auth-box p {
+  color: #9ca3af;
+}
+
+[data-theme='dark'] .form-group label {
+  color: #cbd5e1;
+}
+
+[data-theme='dark'] .form-group input {
+  background: #1C1411;
+  border-color: #3D2D26;
+  color: #f8fafc;
+}
+
+[data-theme='dark'] .form-group input:focus {
+  border-color: #D97B5D; /* Canlı Adaçayı Focus */
+  box-shadow: 0 0 0 3px rgba(217, 123, 93, 0.15);
+}
+
+[data-theme='dark'] .error-message {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.2);
+  color: #fca5a5;
+}
+
+[data-theme='dark'] .submit-btn {
+  background: #D97B5D; /* Karanlık modda kontrast için açık ton */
+  color: #1C1411;
+}
+
+[data-theme='dark'] .submit-btn:hover:not(:disabled) {
+  background: #E89073;
+}
+
+[data-theme='dark'] .auth-footer {
+  color: #9ca3af !important;
+}
+
+[data-theme='dark'] .auth-footer span {
+  color: #D97B5D;
+}
+
+[data-theme='dark'] .auth-footer span:hover {
+  color: #E89073;
+}
+
+
+/* Notice Banner for Auth Redirects */
+.auth-notice-banner {
+  background: #F5E4D8;
+  border: 1px solid #EADCCF;
+  color: #A85D42;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 13.5px;
+  font-weight: 600;
+  margin-bottom: 22px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+  line-height: 1.4;
+}
+
+[data-theme='dark'] .auth-notice-banner {
+  background: rgba(217, 123, 93, 0.15);
+  border-color: rgba(217, 123, 93, 0.3);
+  color: #F5BCA7;
+}

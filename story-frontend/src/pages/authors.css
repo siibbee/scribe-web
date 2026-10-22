@@ -1,0 +1,136 @@
+﻿/* src/pages/authors.css */
+
+.authors-page {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.authors-container {
+  padding: 60px 2rem 100px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* TITLE */
+.authors-title {
+  text-align: center;
+  font-family: "Playfair Display", serif;
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  color: #A85D42;
+}
+
+/* GRID */
+.authors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+/* CARD */
+.author-card {
+  background: #ffffff;
+  border: 1px solid #eef2f6;
+  border-radius: 14px;
+  padding: 1.5rem 1.2rem;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s, border-color 0.3s;
+}
+
+/* HOVER */
+.author-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 28px rgba(168, 93, 66, 0.12), 0 0 20px rgba(217, 123, 93, 0.2);
+  border-color: rgba(217, 123, 93, 0.4);
+}
+
+/* NAME */
+.author-name {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #111827;
+  transition: color 0.2s;
+}
+
+.author-card:hover .author-name {
+  color: #A85D42;
+}
+
+/* SKELETON LOADING */
+.skeleton-card {
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80px;
+}
+
+.skeleton-text {
+  width: 60%;
+  height: 20px;
+  background: linear-gradient(90deg, #e2e8f0 25%, #f8fafc 50%, #e2e8f0 75%);
+  background-size: 200% 100%;
+  animation: loadingSkeleton 1.5s infinite;
+  border-radius: 4px;
+}
+
+.authors-error, .authors-loading {
+  text-align: center;
+  padding: 80px 20px;
+  font-size: 16px;
+  color: #64748b;
+}
+
+@keyframes loadingSkeleton {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ================= DARK MODE OVERRIDES ================= */
+[data-theme='dark'] .authors-page {
+  background: #1C1411;
+  color: #f8fafc;
+}
+
+[data-theme='dark'] .authors-title {
+  color: #D97B5D;
+}
+
+[data-theme='dark'] .author-card {
+  background: #251B17;
+  border-color: #3D2D26;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme='dark'] .author-card:hover {
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 24px rgba(217, 123, 93, 0.35);
+  border-color: #D97B5D;
+}
+
+[data-theme='dark'] .author-name {
+  color: #f8fafc;
+}
+
+[data-theme='dark'] .author-card:hover .author-name {
+  color: #D97B5D;
+}
+
+[data-theme='dark'] .skeleton-card {
+  background: #251B17;
+  border-color: #3D2D26;
+}
+
+[data-theme='dark'] .skeleton-text {
+  background: linear-gradient(90deg, #3D2D26 25%, #4D3830 50%, #3D2D26 75%);
+  background-size: 200% 100%;
+}
+
+[data-theme='dark'] .authors-error,
+[data-theme='dark'] .authors-loading {
+  color: #94a3b8;
+}
+

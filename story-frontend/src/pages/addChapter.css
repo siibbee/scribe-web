@@ -1,0 +1,234 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+.ac-page {
+  background: #f8fafc;
+  min-height: 100vh;
+  font-family: "Inter", sans-serif;
+  color: #111827;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 60px 20px 80px;
+}
+
+/* ── KARTI GENİŞLETTİK VE METİN ODAKLI YAPTIK ── */
+.ac-card {
+  background: white;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.04);
+  padding: 52px 64px;
+  width: 100%;
+  max-width: 880px; /* Yazma alanı çok daha rahat olsun diye 880px'e genişletildi */
+  animation: acFadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes acFadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Geri butonu */
+.ac-back {
+  background: none;
+  border: none;
+  color: #6b7280;
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 28px;
+  transition: color 0.2s, transform 0.2s;
+  display: inline-flex;
+  align-items: center;
+}
+.ac-back:hover { 
+  color: #A85D42; /* Geri dönüş butonunda asil zümrüt yeşili */
+  transform: translateX(-3px);
+}
+
+.ac-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #8E4B33; /* Hafif yumuşatılmış yeşil etiket */
+  margin-bottom: 10px;
+}
+
+.ac-title {
+  font-family: "Playfair Display", serif;
+  font-size: 36px;
+  font-weight: 600;
+  color: #A85D42; /* Başlık kurumsal zümrüt */
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.ac-subtitle {
+  font-size: 15px;
+  color: #6b7280;
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+/* Fields */
+.ac-field { margin-bottom: 26px; }
+
+.ac-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #A85D42; /* Kurumsal yeşil etiketler */
+  margin-bottom: 10px;
+}
+
+.ac-input,
+.ac-textarea {
+  width: 100%;
+  background: #f9fafb;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 8px;
+  color: #111827;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+  appearance: none;
+}
+
+.ac-input        { padding: 12px 16px; height: 48px; }
+.ac-input-sm     { max-width: 140px; }
+.ac-textarea     { padding: 16px; height: 380px; resize: vertical; line-height: 1.8; }
+
+/* Input Odaklanma Efektleri (Maviden Zümrüte) */
+.ac-input:focus,
+.ac-textarea:focus {
+  border-color: #A85D42;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(168, 93, 66, 0.1); /* Zümrüt parlaması */
+}
+
+.ac-input::placeholder,
+.ac-textarea::placeholder { color: #9ca3af; }
+
+.ac-char-count {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 6px;
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+.ac-field-err {
+  font-size: 12px;
+  color: #ef4444;
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+.ac-divider {
+  height: 1px;
+  background: #e5e7eb;
+  margin: 36px 0;
+}
+
+/* Kaydet Butonu (Kurumsal Zümrüt) */
+.ac-btn {
+  width: 100%;
+  height: 52px;
+  background: #A85D42;
+  border: 2px solid #A85D42;
+  border-radius: 8px;
+  color: white;
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.25s, transform 0.15s, box-shadow 0.25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.ac-btn:hover:not(:disabled) {
+  background: #8E4B33;
+  border-color: #8E4B33;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(168, 93, 66, 0.25);
+}
+
+.ac-btn:active:not(:disabled) { transform: scale(0.99); }
+.ac-btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+.ac-spinner {
+  width: 16px; height: 16px;
+  border: 2px solid rgba(255,255,255,0.35);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: acSpin 0.7s linear infinite;
+}
+
+@keyframes acSpin { to { transform: rotate(360deg); } }
+
+/* Toast Bildirimleri */
+.ac-toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), opacity 0.4s;
+  opacity: 0;
+  z-index: 999;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+.ac-toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+.ac-toast.success {
+  background: #f0fdf4;
+  border: 1px solid #86efac;
+  color: #166534;
+}
+
+.ac-toast.error {
+  background: #fef2f2;
+  border: 1px solid #fca5a5;
+  color: #991b1b;
+}
+
+@media (max-width: 768px) {
+  .ac-card { padding: 40px 24px; }
+  .ac-title { font-size: 28px; }
+}
+
+/* ================= KOYU MOD (DARK MODE) AYARLARI ================= */
+[data-theme='dark'] .ac-page { background: #1C1411; color: #f8fafc; }
+[data-theme='dark'] .ac-card { background: #251B17; border-color: #3D2D26; box-shadow: 0 4px 30px rgba(0,0,0,0.2); }
+[data-theme='dark'] .ac-title { color: #D97B5D; } /* Koyu modda parlayan zümrüt yeşili */
+[data-theme='dark'] .ac-subtitle, [data-theme='dark'] .ac-back { color: #94a3b8; }
+[data-theme='dark'] .ac-back:hover { color: #D97B5D; }
+[data-theme='dark'] .ac-eyebrow { color: #D97B5D; }
+[data-theme='dark'] .ac-label { color: #F5E4D8; }
+[data-theme='dark'] .ac-divider { background: #3D2D26; }
+
+[data-theme='dark'] .ac-input,
+[data-theme='dark'] .ac-textarea { background: #1C1411; border-color: #3D2D26; color: #f8fafc; }
+
+[data-theme='dark'] .ac-input:focus,
+[data-theme='dark'] .ac-textarea:focus { background: #251B17; border-color: #D97B5D; box-shadow: 0 0 0 3px rgba(217, 123, 93, 0.15); }
+
+[data-theme='dark'] .ac-btn { background: transparent; border-color: #D97B5D; color: #D97B5D; }
+[data-theme='dark'] .ac-btn:hover:not(:disabled) { background: #D97B5D; color: #1C1411; box-shadow: 0 6px 20px rgba(217, 123, 93, 0.2); }
+
+[data-theme='dark'] .ac-toast.success { background: #064e3b; border-color: #065f46; color: #6ee7b7; }
+[data-theme='dark'] .ac-toast.error { background: #7f1d1d; border-color: #991b1b; color: #fca5a5; }
+
