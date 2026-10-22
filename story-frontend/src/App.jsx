@@ -7,7 +7,7 @@ import AddBook from "./pages/AddBook";
 import Profile from "./pages/Profile";
 import BookDetail from "./pages/BookDetail";
 import AddChapter from "./pages/AddChapter";
-import EditChapter from "./pages/Editchapter";
+import EditChapter from "./pages/EditChapter";
 import ReadChapter from "./pages/ReadChapter";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Search from "./pages/Search";
