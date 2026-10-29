@@ -1,4 +1,5 @@
 import { useState, useRef, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { createBook, uploadCover } from "../services/bookService";
 import "./addBook.css";
@@ -21,6 +22,7 @@ const CATEGORIES = [
 export default function AddBook() {
   const { user } = useContext(AuthContext);
   const currentUser = user?.user;
+  const navigate = useNavigate();
 
   const [form, setForm] = useState({ title: "", description: "", category: "" });
   const [coverFile, setCoverFile] = useState(null);
@@ -59,7 +61,7 @@ export default function AddBook() {
   const handleRemoveCover = () => {
     setCoverFile(null);
     setCoverPreview(null);
-    fileInputRef.current.value = "";
+    if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
   const handleSubmit = async () => {
@@ -95,10 +97,14 @@ export default function AddBook() {
   return (
     <div className="addbook-page">
       <div className="addbook-card">
+        <button className="addbook-back-btn" onClick={() => navigate("/profile")}>
+          ← Yazar Profiline Dön
+        </button>
 
-        <h1 className="addbook-title">Yeni Kitap Ekle</h1>
+        <span className="addbook-eyebrow">✦ YAZAR STÜDYOSU</span>
+        <h1 className="addbook-title">Yeni Eser Oluştur</h1>
         <p className="addbook-subtitle">
-          Koleksiyonuna yeni bir kitap eklemek için aşağıdaki formu doldur.
+          Scribe kütüphanesinde okurlarla buluşacak yeni hikayenizin detaylarını girin.
         </p>
 
         {/* Kapak Görseli */}
@@ -112,6 +118,7 @@ export default function AddBook() {
               <>
                 <img src={coverPreview} alt="Kapak önizleme" className="addbook-cover-preview" />
                 <button
+                  type="button"
                   className="addbook-cover-remove"
                   onClick={(e) => { e.stopPropagation(); handleRemoveCover(); }}
                 >
@@ -137,29 +144,15 @@ export default function AddBook() {
 
         {/* Kitap Adı */}
         <div className="addbook-field">
-          <label className="addbook-label">Kitap Adı</label>
+          <label className="addbook-label">Eser Adı</label>
           <input
             className="addbook-input"
-            placeholder="örn. Suç ve Ceza"
+            placeholder="örn. Gece Yarısı Kütüphanesi"
             value={form.title}
             onChange={handleChange("title")}
             maxLength={120}
           />
           {errors.title && <p className="addbook-field-err">{errors.title}</p>}
-        </div>
-
-        {/* Açıklama */}
-        <div className="addbook-field">
-          <label className="addbook-label">Açıklama</label>
-          <textarea
-            className="addbook-textarea"
-            placeholder="Kitap hakkında kısa bir açıklama yazın…"
-            value={form.description}
-            onChange={handleChange("description")}
-            maxLength={500}
-          />
-          <p className="addbook-char-count">{form.description.length} / 500</p>
-          {errors.description && <p className="addbook-field-err">{errors.description}</p>}
         </div>
 
         {/* Kategori */}
@@ -180,12 +173,25 @@ export default function AddBook() {
           {errors.category && <p className="addbook-field-err">{errors.category}</p>}
         </div>
 
+        {/* Açıklama */}
+        <div className="addbook-field">
+          <label className="addbook-label">Arka Kapak / Özet</label>
+          <textarea
+            className="addbook-textarea"
+            placeholder="Hikayeniz hakkında merak uyandıran bir özet yazın…"
+            value={form.description}
+            onChange={handleChange("description")}
+            maxLength={500}
+          />
+          <p className="addbook-char-count">{form.description.length} / 500</p>
+          {errors.description && <p className="addbook-field-err">{errors.description}</p>}
+        </div>
+
         <div className="addbook-divider" />
 
         <button className="addbook-btn" onClick={handleSubmit} disabled={loading}>
-          {loading ? <><span className="addbook-spinner" /> Ekleniyor…</> : "Kitabı Kaydet"}
+          {loading ? <><span className="addbook-spinner" /> Yayınlanıyor…</> : "✦ Eseri Kaydet ve Yayınla"}
         </button>
-
       </div>
 
       <div className={`addbook-toast ${toast.type} ${toast.show ? "show" : ""}`}>

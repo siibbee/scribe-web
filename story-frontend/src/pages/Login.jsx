@@ -1,4 +1,4 @@
-﻿import { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { loginUser } from "../services/authService";
@@ -41,7 +41,6 @@ export default function Login() {
 
       login(res.data);
       navigate(redirectTarget);
-
     } catch (err) {
       console.error(err);
       setError("Email veya şifre hatalı.");
@@ -54,9 +53,13 @@ export default function Login() {
     <div className="auth-page">
       <div className="auth-container">
         <div className="auth-box">
+          <div className="auth-brand-head" onClick={() => navigate("/")}>
+            <div className="auth-monogram">S.</div>
+            <span className="auth-eyebrow">SCRIBE EDİTÖRYAL DÜNYASI</span>
+          </div>
 
-          <h1>Giriş Yap</h1>
-          <p>Devam etmek için hesabınıza giriş yapın</p>
+          <h1>Hoş Geldiniz</h1>
+          <p>Okuma masanıza ve kütüphanenize erişmek için giriş yapın.</p>
 
           {redirectMessage && (
             <div className="auth-notice-banner">
@@ -92,8 +95,8 @@ export default function Login() {
               />
             </div>
 
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               className="submit-btn"
               disabled={loading}
             >
@@ -107,7 +110,6 @@ export default function Login() {
               Üye Ol
             </span>
           </p>
-
         </div>
       </div>
     </div>

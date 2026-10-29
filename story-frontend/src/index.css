@@ -1,54 +1,121 @@
-﻿/* src/index.css */
+/* src/index.css — Scribe Editöryal Lüks Renk Sistemi (Mobil Uygulama ile Birebir Uyumlu) */
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,400&family=Inter:wght@400;500;600;700;800&display=swap");
 
-:root {
-  --bg-primary: #FBF5EF;
-  --bg-secondary: #F3E9DF;
-  --card-bg: #FFFFFF;
-  --text-primary: #352923;
-  --text-secondary: #7A665A;
-  --text-color: #352923;
-  --border-color: #EADCCF;
-  --primary-color: #A85D42;
-  --primary-hover: #8E4B33;
-  --primary-light: #F5E4D8;
+:root,
+html[data-theme='light'],
+body[data-theme='light'] {
+  /* Scribe Editöryal Lüks Renk Paleti (Derin Tarçın Bordo, Koyu Espresso & Sıcak Parşömen) */
+  --bg-primary: #FAF6F0;        /* Sıcak Parşömen (cream / warmPaper) */
+  --bg-secondary: #F1E8DD;      /* İkincil Keten Dokulu Zemin (creamDark) */
+  --bg-selected: #F6E6DC;       /* Yumuşak Gül Kumu (sageLight / softPeach) */
+  --card-bg: #FFFFFF;           /* Saf Fildişi (card / white) */
+  --espresso-bg: #1F1612;       /* Editöryal Koyu Vitrin Kartı Zemini (espresso) */
+  --espresso-border: #35261F;
+
+  --text-primary: #1E1511;      /* Koyu Espresso Mürekkep (charcoal) */
+  --text-secondary: #65544B;    /* Sıcak Umber (textSecondary) */
+  --text-muted: #9C8B80;        /* Zarif Taupe (textMuted) */
+  --text-color: #1E1511;
+
+  --border-color: #E8DDD1;      /* İnce Sıcak Parşömen Çerçeve (border) */
+  --border-focus: #9E3E28;
+
+  --primary-color: #9E3E28;     /* Ana Marka Rengi: Edebi Kiremit-Bordo (forest / terracotta) */
+  --primary-hover: #782B19;     /* Derin Bordo Gölge (forestDark) */
+  --primary-accent: #BC563E;    /* Canlı Sıcak Vurgu (forestLight) */
+  --primary-light: #F6E6DC;     /* Yumuşak Gül Kumu */
+
+  --gold-color: #C87D20;        /* Sıcak Kehribar Altın */
+  --gold-light: #FEF3C7;
+  --crimson-color: #D9383A;     /* Beğeni Kırmızısı */
+  --success-color: #2E6F4E;
+  --success-light: #EAF4EE;
+  --error-color: #C93B2B;
+  --error-light: #FDF2F0;
+
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  --container-max-width: 1380px;
+
   color-scheme: light;
 }
 
-[data-theme='dark'] {
-  --bg-primary: #1C1411;
-  --bg-secondary: #251B17;
-  --card-bg: #2B201B;
-  --text-primary: #F7EEE7;
-  --text-secondary: #C4B3A8;
-  --text-color: #F7EEE7;
-  --border-color: #3D2D26;
-  --primary-color: #D97B5D;
-  --primary-hover: #E89073;
-  --primary-light: #3D2820;
+[data-theme='dark'],
+html[data-theme='dark'],
+body[data-theme='dark'],
+html.dark,
+body.dark {
+  --bg-primary: #18120F;        /* Gece Espresso Zemini */
+  --bg-secondary: #211915;      /* İkincil Gece Zemini */
+  --bg-selected: #362720;       /* Seçili Çip / Rozet Gece Zemini */
+  --card-bg: #241B16;           /* Koyu Mod Kart Zemini */
+  --espresso-bg: #140E0C;
+  --espresso-border: #382922;
+
+  --text-primary: #FAF6F0;      /* Sıcak Parşömen Metin */
+  --text-secondary: #C4B5AC;    /* Yumuşak Keten Gri-Kahve */
+  --text-muted: #8C7A70;
+  --text-color: #FAF6F0;
+
+  --border-color: #35261F;      /* Koyu Espresso Çerçeve */
+  --border-focus: #BC563E;
+
+  --primary-color: #BC563E;     /* Koyu Modda Parlayan Sıcak Kiremit */
+  --primary-hover: #D46B52;
+  --primary-accent: #E07A5F;
+  --primary-light: #362720;
+
+  --gold-color: #E59838;
+  --gold-light: rgba(229, 152, 56, 0.16);
+  --crimson-color: #EF5350;
+  --success-color: #4CAF7D;
+  --success-light: rgba(46, 111, 78, 0.2);
+  --error-color: #EF6C5E;
+  --error-light: rgba(201, 59, 43, 0.2);
+
   color-scheme: dark;
 }
 
-* {
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html, body {
+html {
   width: 100%;
   min-height: 100vh;
+  overflow-x: hidden;
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 #root {
   width: 100%;
   min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
   background-color: inherit;
   color: inherit;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Global reset */
@@ -67,6 +134,14 @@ a {
 
 input, textarea, select {
   font-family: inherit;
+  color: inherit;
+}
+
+/* Koyu modda sistem kartları ve form elemanları */
+[data-theme='dark'] input,
+[data-theme='dark'] textarea,
+[data-theme='dark'] select {
+  color-scheme: dark;
 }
 
 /* Scrollbar styling */
@@ -76,27 +151,14 @@ input, textarea, select {
 }
 
 ::-webkit-scrollbar-track {
-  background: #F3E9DF;
+  background: var(--bg-secondary);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #EADCCF;
-  border-radius: 4px;
+  background: var(--border-color);
+  border-radius: 999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #C4B1A2;
-}
-
-[data-theme='dark'] ::-webkit-scrollbar-track {
-  background: #251B17;
-}
-
-[data-theme='dark'] ::-webkit-scrollbar-thumb {
-  background: #3D2D26;
-  border-radius: 4px;
-}
-
-[data-theme='dark'] ::-webkit-scrollbar-thumb:hover {
-  background: #4D3830;
+  background: var(--text-muted);
 }

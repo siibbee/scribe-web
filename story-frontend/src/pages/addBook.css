@@ -1,75 +1,103 @@
-﻿@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+/* src/pages/addBook.css - Scribe Editorial Luxury Theme */
 
 .addbook-page {
-  background: #f8fafc;
+  background: var(--bg-primary);
   min-height: 100vh;
-  font-family: "Inter", sans-serif;
-  color: #111827;
+  font-family: var(--font-sans);
+  color: var(--text-primary);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 80px 20px;
+  padding: 64px 20px 88px;
 }
 
-/* ── KARTI GENİŞLETTİK VE ORTALADIK ── */
 .addbook-card {
-  background: white;
-  border-radius: 16px;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.04);
-  padding: 52px 64px;
+  background: var(--card-bg);
+  border-radius: 22px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 12px 34px rgba(30, 21, 17, 0.06);
+  padding: 48px 56px;
   width: 100%;
-  max-width: 760px; /* 580px'den 760px'e çıkarılarak form ferahlatıldı */
-  animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  max-width: 740px;
+  animation: fadeUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(16px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
+.addbook-back-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 22px;
+  transition: color 0.2s, transform 0.2s;
+  display: inline-flex;
+  align-items: center;
+}
+
+.addbook-back-btn:hover {
+  color: var(--primary-color);
+  transform: translateX(-3px);
+}
+
+.addbook-eyebrow {
+  display: block;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--primary-color);
+  margin-bottom: 8px;
+}
+
 .addbook-title {
-  font-family: "Playfair Display", serif;
-  font-size: 38px;
-  font-weight: 600;
-  color: #A85D42; /* Mavi yerine Projenin Asil Yeşili */
-  margin-bottom: 10px;
+  font-family: var(--font-serif);
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0 0 8px;
   line-height: 1.2;
 }
 
 .addbook-subtitle {
   font-size: 15px;
-  color: #6b7280;
-  margin-bottom: 44px;
+  color: var(--text-secondary);
+  margin: 0 0 36px;
   line-height: 1.6;
 }
 
 .addbook-divider {
   height: 1px;
-  background: #e5e7eb;
-  margin: 36px 0;
+  background: var(--border-color);
+  margin: 32px 0;
 }
 
-.addbook-field { margin-bottom: 26px; }
+.addbook-field { margin-bottom: 24px; }
 
 .addbook-label {
   display: block;
   font-size: 13px;
-  font-weight: 600;
-  color: #A85D42; /* Etiket renkleri zümrüt yapıldı */
-  margin-bottom: 10px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
 }
 
-/* ── Kapak Yükleme Alanı (Zümrüt Yeşili Uyarlaması) ── */
+/* ── Kapak Yükleme Alanı ── */
 .addbook-cover-zone {
-  border: 2px dashed #ccd7d2;
-  border-radius: 12px;
-  background: #fdfdfd;
+  border: 2px dashed var(--border-color);
+  border-radius: 16px;
+  background: var(--bg-primary);
   cursor: pointer;
   transition: border-color 0.2s, background 0.2s;
   overflow: hidden;
-  min-height: 180px;
+  min-height: 190px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -77,15 +105,15 @@
 }
 
 .addbook-cover-zone:hover {
-  border-color: #A85D42; /* Hover'da zümrüt yeşili çerçeve */
-  background: #f4f7f5;    /* Çok hafif yeşilimsi arka plan banyosu */
+  border-color: var(--primary-color);
+  background: var(--bg-selected);
 }
 
 .addbook-cover-zone.has-preview {
   cursor: default;
   border-style: solid;
-  border-color: #e5e7eb;
-  min-height: 240px;
+  border-color: var(--border-color);
+  min-height: 250px;
 }
 
 .addbook-cover-placeholder {
@@ -97,22 +125,36 @@
   text-align: center;
 }
 
-.addbook-cover-icon { font-size: 38px; }
+.addbook-cover-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: #1F1612;
+  border: 1.5px solid var(--primary-color);
+  color: #FAF6F0;
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .addbook-cover-placeholder p {
   font-size: 14px;
-  font-weight: 600;
-  color: #A85D42;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin: 4px 0 0;
 }
 
 .addbook-cover-placeholder span {
   font-size: 12px;
-  color: #9ca3af;
+  color: var(--text-muted);
 }
 
 .addbook-cover-preview {
   width: 100%;
-  height: 240px;
+  height: 250px;
   object-fit: cover;
   display: block;
 }
@@ -121,30 +163,29 @@
   position: absolute;
   top: 12px;
   right: 12px;
-  background: rgba(168, 93, 66, 0.85); /* Kaldırma butonu zümrüt transparan */
-  color: white;
-  border: none;
-  border-radius: 6px;
+  background: rgba(31, 22, 18, 0.85);
+  color: #FAF6F0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
   padding: 6px 14px;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   transition: background 0.2s;
-  font-family: "Inter", sans-serif;
 }
 
-.addbook-cover-remove:hover { background: #A85D42; }
+.addbook-cover-remove:hover { background: var(--primary-color); }
 
-/* ── Girdi Alanları (Inputs) ── */
+/* ── Girdi Alanları ── */
 .addbook-input,
 .addbook-textarea,
 .addbook-select {
   width: 100%;
-  background: #f9fafb;
-  border: 1.5px solid #e5e7eb;
-  border-radius: 8px;
-  color: #111827;
-  font-family: "Inter", sans-serif;
+  background: var(--bg-primary);
+  border: 1.5px solid var(--border-color);
+  border-radius: 12px;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
   font-size: 14px;
   transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
   outline: none;
@@ -153,29 +194,29 @@
 
 .addbook-input,
 .addbook-select  { padding: 12px 16px; height: 48px; }
-.addbook-textarea { padding: 12px 16px; height: 140px; resize: none; line-height: 1.6; }
+.addbook-textarea { padding: 14px 16px; height: 140px; resize: vertical; line-height: 1.6; }
 
-/* Input Focus Efektleri (Maviden Zümrüte) */
 .addbook-input:focus,
 .addbook-textarea:focus,
 .addbook-select:focus {
-  border-color: #A85D42;
-  background: white;
-  box-shadow: 0 0 0 3px rgba(168, 93, 66, 0.1); /* Zümrüt parlaması */
+  border-color: var(--primary-color);
+  background: var(--card-bg);
+  box-shadow: 0 0 0 3px rgba(158, 62, 40, 0.14);
 }
 
 .addbook-input::placeholder,
-.addbook-textarea::placeholder { color: #9ca3af; }
+.addbook-textarea::placeholder { color: var(--text-muted); }
 
-.addbook-select option { background: white; color: #111827; }
+.addbook-select option { background: var(--card-bg); color: var(--text-primary); }
 
 .addbook-select-wrap { position: relative; }
 .addbook-select-wrap::after {
   content: '▾';
   position: absolute;
-  right: 16px; top: 50%;
+  right: 16px;
+  top: 50%;
   transform: translateY(-50%);
-  color: #A85D42;
+  color: var(--primary-color);
   pointer-events: none;
   font-size: 14px;
 }
@@ -185,29 +226,28 @@
   justify-content: flex-end;
   margin-top: 6px;
   font-size: 11px;
-  color: #9ca3af;
+  color: var(--text-muted);
 }
 
 .addbook-field-err {
   font-size: 12px;
-  color: #ef4444;
+  color: #B83A2E;
   margin-top: 6px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
-/* ── Kaydet Butonu (Zümrüt Yeşili & Minimalist Efekt) ── */
 .addbook-btn {
   width: 100%;
   height: 52px;
-  background: #A85D42;
-  border: 2px solid #A85D42;
-  border-radius: 8px;
-  color: white;
-  font-family: "Inter", sans-serif;
+  background: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 12px;
+  color: #FAF6F0;
+  font-family: var(--font-sans);
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  transition: background 0.25s, transform 0.15s, box-shadow 0.25s;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -215,18 +255,18 @@
 }
 
 .addbook-btn:hover:not(:disabled) {
-  background: #8E4B33;
-  border-color: #8E4B33;
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(168, 93, 66, 0.25);
+  box-shadow: 0 8px 22px rgba(158, 62, 40, 0.25);
 }
 
-.addbook-btn:active:not(:disabled) { transform: scale(0.99); }
 .addbook-btn:disabled { opacity: 0.55; cursor: not-allowed; }
 
 .addbook-spinner {
-  width: 16px; height: 16px;
-  border: 2px solid rgba(255,255,255,0.35);
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
   border-top-color: white;
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
@@ -240,64 +280,32 @@
   bottom: 32px;
   left: 50%;
   transform: translateX(-50%) translateY(80px);
-  padding: 14px 28px;
-  border-radius: 8px;
-  font-size: 13px;
-  font-weight: 500;
-  font-family: "Inter", sans-serif;
+  padding: 13px 26px;
+  border-radius: 12px;
+  font-size: 13.5px;
+  font-weight: 600;
   white-space: nowrap;
-  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), opacity 0.4s;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s;
   opacity: 0;
   z-index: 999;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
 }
 
 .addbook-toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
 
 .addbook-toast.success {
-  background: #f0fdf4;
-  border: 1px solid #86efac;
-  color: #166534;
+  background: #1F1612;
+  border-left: 4px solid var(--primary-color);
+  color: #FAF6F0;
 }
 
 .addbook-toast.error {
-  background: #fef2f2;
-  border: 1px solid #fca5a5;
-  color: #991b1b;
+  background: #7F1D1D;
+  border-left: 4px solid #F87171;
+  color: #FAF6F0;
 }
 
-/* ── Mobil Uyum (Responsive) ── */
 @media (max-width: 768px) {
-  .addbook-card { padding: 40px 24px; }
-  .addbook-title { font-size: 30px; }
+  .addbook-card { padding: 36px 22px; }
+  .addbook-title { font-size: 28px; }
 }
-
-/* ================= KOYU MOD (DARK MODE) AYARLARI ================= */
-[data-theme='dark'] .addbook-page { background: #1C1411; color: #f8fafc; }
-[data-theme='dark'] .addbook-card { background: #251B17; border-color: #3D2D26; box-shadow: 0 4px 30px rgba(0,0,0,0.2); }
-[data-theme='dark'] .addbook-title { color: #D97B5D; } /* Koyu modda parlayan zümrüt yeşili */
-[data-theme='dark'] .addbook-subtitle { color: #94a3b8; }
-[data-theme='dark'] .addbook-divider { background: #3D2D26; }
-[data-theme='dark'] .addbook-label { color: #F5E4D8; }
-[data-theme='dark'] .addbook-cover-zone { background: #1C1411; border-color: #3D2D26; }
-[data-theme='dark'] .addbook-cover-zone:hover { background: #251B17; border-color: #D97B5D; }
-[data-theme='dark'] .addbook-cover-placeholder p { color: #D97B5D; }
-[data-theme='dark'] .addbook-cover-remove { background: #3D2D26; }
-[data-theme='dark'] .addbook-cover-remove:hover { background: #8E4B33; }
-
-[data-theme='dark'] .addbook-input,
-[data-theme='dark'] .addbook-textarea,
-[data-theme='dark'] .addbook-select { background: #1C1411; border-color: #3D2D26; color: #f8fafc; }
-
-[data-theme='dark'] .addbook-input:focus,
-[data-theme='dark'] .addbook-textarea:focus,
-[data-theme='dark'] .addbook-select:focus { background: #251B17; border-color: #D97B5D; box-shadow: 0 0 0 3px rgba(217, 123, 93, 0.15); }
-
-[data-theme='dark'] .addbook-select option { background: #251B17; color: #f8fafc; }
-[data-theme='dark'] .addbook-select-wrap::after { color: #D97B5D; }
-[data-theme='dark'] .addbook-btn { background: transparent; border-color: #D97B5D; color: #D97B5D; }
-[data-theme='dark'] .addbook-btn:hover:not(:disabled) { background: #D97B5D; color: #1C1411; box-shadow: 0 6px 20px rgba(217, 123, 93, 0.2); }
-
-[data-theme='dark'] .addbook-toast.success { background: #064e3b; border-color: #065f46; color: #6ee7b7; }
-[data-theme='dark'] .addbook-toast.error { background: #7f1d1d; border-color: #991b1b; color: #fca5a5; }
-

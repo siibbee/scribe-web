@@ -50,7 +50,6 @@ export default function Register() {
 
       register(res.data);
       navigate("/");
-
     } catch (err) {
       console.error(err);
       setError(err.response?.data?.message || "Kayıt başarısız oldu");
@@ -63,14 +62,17 @@ export default function Register() {
     <div className="auth-page">
       <div className="auth-container">
         <div className="auth-box">
+          <div className="auth-brand-head" onClick={() => navigate("/")}>
+            <div className="auth-monogram">S.</div>
+            <span className="auth-eyebrow">SCRIBE YAZAR & OKUR LONCASI</span>
+          </div>
 
-          <h1>Üye Ol</h1>
-          <p>Hesap oluşturun ve hikaye dünyasına katılın</p>
+          <h1>Aramıza Katılın</h1>
+          <p>Kendi hikayelerinizi yazmak ve özgün eserleri keşfetmek için hesap oluşturun.</p>
 
           {error && <div className="error-message">{error}</div>}
 
           <form onSubmit={handleSubmit}>
-
             <div className="form-group">
               <label>Email</label>
               <input
@@ -119,14 +121,13 @@ export default function Register() {
               />
             </div>
 
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               className="submit-btn"
               disabled={loading}
             >
               {loading ? "Kayıt yapılıyor..." : "Üye Ol"}
             </button>
-
           </form>
 
           <p className="auth-footer">
@@ -135,7 +136,6 @@ export default function Register() {
               Giriş Yap
             </span>
           </p>
-
         </div>
       </div>
     </div>

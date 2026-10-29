@@ -1,7 +1,8 @@
-﻿import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import {
+  getBookById,
   getChapterById,
   getChaptersByBook,
   getCommentsByChapter,
@@ -17,7 +18,6 @@ import "./readChapter.css";
 function splitIntoCommentParagraphs(text) {
   if (!text || typeof text !== "string") return [];
 
-  // İki satır boşluk (\n\n) varsa ana paragraflar olarak ayır
   const blocks = text.split(/\r?\n\s*\r?\n/);
   const result = [];
   const ABBREVS = ["dr", "prof", "av", "vb", "vs", "al"];
@@ -26,10 +26,7 @@ function splitIntoCommentParagraphs(text) {
     const trimmed = block.trim();
     if (!trimmed) continue;
 
-    // Satır içi tekil \n'leri boşluk yaparak cümlenin ortasında bölünmesini engelle
     const oneLine = trimmed.replace(/\r?\n+/g, " ").replace(/\s+/g, " ");
-
-    // Nokta (.), ünlem (!), soru işareti (?) veya üç nokta (...) sonrasından ayır
     const rawSentences = oneLine.split(/(?<=[.!?…]["'”’)]?)\s+/);
 
     const merged = [];
@@ -37,7 +34,6 @@ function splitIntoCommentParagraphs(text) {
       const s = rawSentences[i].trim();
       if (!s) continue;
 
-      // Son kelime kısaltmaysa (Dr., vb.) bir sonraki parçayla birleştir
       const lastWord = s.replace(/[.!?…]+$/, "").split(/\s+/).pop()?.toLowerCase() || "";
       if (ABBREVS.includes(lastWord) && i < rawSentences.length - 1) {
         rawSentences[i + 1] = s + " " + rawSentences[i + 1];
@@ -58,11 +54,19 @@ export default function ReadChapter() {
   const { user } = useContext(AuthContext);
   const currentUser = user?.user || user;
 
+  const [book, setBook]               = useState(null);
   const [chapter, setChapter]         = useState(null);
   const [chapters, setChapters]       = useState([]);
   const [loading, setLoading]         = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [comments, setComments]       = useState([]);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  // Okuma punto boyutu (16px - 24px)
+  const [fontSize, setFontSize] = useState(() => {
+    const saved = Number(localStorage.getItem("@scribe_reader_font_size"));
+    return saved >= 15 && saved <= 26 ? saved : 19;
+  });
 
   // Aktif paragraf paneli: { index }
   const [activePanel, setActivePanel] = useState(null);
@@ -72,10 +76,20 @@ export default function ReadChapter() {
 
   // Engelleme modalı ve re-render tetikleyicisi
   const [confirmBlockUser, setConfirmBlockUser] = useState(null);
-  const [blockedTick, setBlockedTick]           = useState(0);
+  const [, setBlockedTick]                      = useState(0);
 
   // Hangi yoruma yanıt verildiğini tutan state: { commentId, username }
   const [replyTarget, setReplyTarget] = useState(null);
+
+  const changeFontSize = (delta) => {
+    setFontSize((prev) => {
+      const next = Math.min(24, Math.max(15, prev + delta));
+      try {
+        localStorage.setItem("@scribe_reader_font_size", String(next));
+      } catch {}
+      return next;
+    });
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -86,11 +100,36 @@ export default function ReadChapter() {
       getChapterById(chapterId),
       getChaptersByBook(bookId),
       getCommentsByChapter(chapterId),
+      getBookById(bookId).catch(() => ({ data: null })),
     ])
-      .then(([{ data: ch }, { data: all }, { data: cmts }]) => {
+      .then(([{ data: ch }, { data: all }, { data: cmts }, { data: bk }]) => {
         setChapter(ch);
         setChapters(all);
         setComments(cmts);
+        if (bk) setBook(bk);
+
+        // Okuma Masan (@scribe_last_read) önbelleğini güncelle
+        try {
+          const idx = all.findIndex((item) => String(item.id) === String(ch.id));
+          const orderNum = ch.order_number || (idx >= 0 ? idx + 1 : 1);
+          const totalCh = all.length || 1;
+          const pct = Math.min(100, Math.max(10, Math.round(((idx >= 0 ? idx + 1 : 1) / totalCh) * 100)));
+          localStorage.setItem(
+            "@scribe_last_read",
+            JSON.stringify({
+              bookId: Number(bookId),
+              bookTitle: bk?.title || "Scribe Eseri",
+              authorName: bk?.author_username || "Scribe Yazarı",
+              coverUrl: bk?.cover_url || null,
+              chapterId: ch.id,
+              chapterTitle: ch.title,
+              chapterOrder: orderNum,
+              totalChapters: totalCh,
+              progressPercent: pct,
+              updatedAt: new Date().toISOString(),
+            })
+          );
+        } catch {}
       })
       .finally(() => setLoading(false));
   }, [chapterId, bookId]);
@@ -98,6 +137,21 @@ export default function ReadChapter() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [chapterId]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      if (docHeight <= 0) {
+        setScrollProgress(100);
+      } else {
+        setScrollProgress(Math.min(100, Math.max(0, Math.round((scrollTop / docHeight) * 100))));
+      }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [chapter]);
 
   // Her bölüm her kullanıcı/cihaz için yalnızca 1 kez okunma sayısına eklenir
   useEffect(() => {
@@ -129,7 +183,6 @@ export default function ReadChapter() {
     ? splitIntoCommentParagraphs(chapter.content)
     : [];
 
-  // Paragrafın yorumlarını getir (Engellenen kullanıcıların yorumlarını gizle)
   const commentsForPara = (idx) => {
     return comments.filter((c) => {
       if (c.paragraph_index !== idx) return false;
@@ -162,7 +215,6 @@ export default function ReadChapter() {
       return;
     }
 
-    // 1. Küfür ve Topluluk Kuralları Denetimi
     if (containsProfanity(trimmed)) {
       setProfanityWarning(
         "Yorumunuz topluluk kurallarımıza aykırı uygunsuz veya kırıcı kelimeler içeriyor. Lütfen saygılı bir dil kullanınız."
@@ -205,7 +257,7 @@ export default function ReadChapter() {
       name: confirmBlockUser.name,
     });
     setConfirmBlockUser(null);
-    setBlockedTick((t) => t + 1); // Listeyi güncelle
+    setBlockedTick((t) => t + 1);
   };
 
   const formatDate = (d) =>
@@ -213,6 +265,11 @@ export default function ReadChapter() {
 
   return (
     <div className="rc-page">
+      {/* Üst Okuma İlerleme Çubuğu */}
+      <div className="rc-progress-track">
+        <div className="rc-progress-fill" style={{ width: `${scrollProgress}%` }} />
+      </div>
+
       {/* Sidebar overlay */}
       {sidebarOpen && (
         <div className="rc-sidebar-overlay" onClick={() => setSidebarOpen(false)} />
@@ -221,7 +278,10 @@ export default function ReadChapter() {
       {/* Chapters Sidebar */}
       <aside className={`rc-sidebar ${sidebarOpen ? "open" : ""}`}>
         <div className="rc-sidebar-header">
-          <span className="rc-sidebar-title">Bölümler</span>
+          <div>
+            <span className="rc-sidebar-eyebrow">İÇİNDEKİLER</span>
+            <span className="rc-sidebar-title">{book?.title || "Bölümler"}</span>
+          </div>
           <button className="rc-sidebar-close" onClick={() => setSidebarOpen(false)}>
             ✕
           </button>
@@ -243,21 +303,43 @@ export default function ReadChapter() {
         </div>
       </aside>
 
-      {/* Top Bar */}
+      {/* Sticky Reader Top Bar */}
       <div className="rc-topbar">
-        <button className="rc-back-btn" onClick={() => navigate(`/books/${bookId}`)}>
-          ← Kitaba Dön
-        </button>
-        <button className="rc-toc-btn" onClick={() => setSidebarOpen(true)}>
-          Bölümler ({chapters.length})
-        </button>
+        <div className="rc-topbar-inner">
+          <button className="rc-back-btn" onClick={() => navigate(`/books/${bookId}`)}>
+            <span>←</span>
+            <span>{book?.title ? book.title : "Kitaba Dön"}</span>
+          </button>
+
+          <div className="rc-topbar-controls">
+            {/* Punto Boyutu Kontrolleri */}
+            <div className="rc-font-controls" title="Yazı Boyutunu Ayarla">
+              <button type="button" className="rc-font-btn" onClick={() => changeFontSize(-1)}>
+                A-
+              </button>
+              <span className="rc-font-val">{fontSize}</span>
+              <button type="button" className="rc-font-btn" onClick={() => changeFontSize(1)}>
+                A+
+              </button>
+            </div>
+
+            <button className="rc-toc-btn" onClick={() => setSidebarOpen(true)}>
+              <span>Bölümler ({chapters.length})</span>
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* Chapter Content */}
-      <div className="rc-content">
-        <p className="rc-chapter-num">Bölüm {chapter.order_number}</p>
-        <h1 className="rc-title">{chapter.title}</h1>
-        <div className="rc-divider" />
+      <article className="rc-content">
+        <div className="rc-header-meta">
+          <span className="rc-chapter-num">BÖLÜM {chapter.order_number}</span>
+          <h1 className="rc-title">{chapter.title}</h1>
+          {book?.author_username && (
+            <p className="rc-book-author">✦ {book.author_username}</p>
+          )}
+          <div className="rc-divider" />
+        </div>
 
         <div className="rc-body">
           {paragraphs.length === 0 ? (
@@ -268,26 +350,28 @@ export default function ReadChapter() {
               const isActive = activePanel?.index === i;
               return (
                 <div key={i} className="rc-para-wrap">
-                  {/* Paragraf + yorum butonu */}
                   <div className={`rc-para-row ${isActive ? "active" : ""}`}>
-                    <p className="rc-para-text" onClick={() => handleParagraphClick(i)}>
+                    <p
+                      className="rc-para-text"
+                      style={{ fontSize: `${fontSize}px` }}
+                      onClick={() => handleParagraphClick(i)}
+                    >
                       {para}
                     </p>
                     <button
                       className={`rc-comment-icon ${paraCmts.length > 0 ? "has-comments" : ""} ${isActive ? "active" : ""}`}
                       onClick={() => handleParagraphClick(i)}
-                      title="Yorumları gör / Yaz"
+                      title="Satır arası yorumları gör / yaz"
                     >
                       <svg
-                        width="18"
-                        height="18"
+                        width="16"
+                        height="16"
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
-                        strokeWidth="2"
+                        strokeWidth="2.2"
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        style={{ display: "block" }}
                       >
                         <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                       </svg>
@@ -300,7 +384,11 @@ export default function ReadChapter() {
                   {/* Yorum Paneli */}
                   {isActive && (
                     <div className="rc-comment-panel">
-                      {/* Mevcut yorumlar */}
+                      <div className="rc-comment-panel-head">
+                        <span>SATIR ARASI YORUMLAR ({paraCmts.length})</span>
+                        <button type="button" onClick={() => setActivePanel(null)}>✕</button>
+                      </div>
+
                       {paraCmts.length > 0 && (
                         <div className="rc-comments-list">
                           {paraCmts.map((cmt) => (
@@ -316,7 +404,7 @@ export default function ReadChapter() {
                                   <span className="rc-comment-username">{cmt.username}</span>
                                   <span className="rc-comment-date">{formatDate(cmt.created_at)}</span>
 
-                                  <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                                  <div className="rc-comment-mod-btns">
                                     {currentUser && Number(currentUser.id) === Number(cmt.user_id) && (
                                       <button
                                         className="rc-comment-delete"
@@ -327,7 +415,6 @@ export default function ReadChapter() {
                                       </button>
                                     )}
 
-                                    {/* Kullanıcıyı Engelle Butonu */}
                                     {currentUser && Number(currentUser.id) !== Number(cmt.user_id) && (
                                       <button
                                         className="rc-comment-block-btn"
@@ -355,7 +442,6 @@ export default function ReadChapter() {
                                   )}
                                 </p>
 
-                                {/* Yanıtla Butonu */}
                                 {currentUser && (
                                   <button
                                     className="rc-reply-btn"
@@ -370,21 +456,18 @@ export default function ReadChapter() {
                         </div>
                       )}
 
-                      {/* Yorum / Yanıt Yazma Alanı */}
                       {currentUser ? (
                         <div className="rc-comment-input-wrap">
                           <div className="rc-comment-avatar">
-                            {currentUser.username?.[0]?.toUpperCase()}
+                            {currentUser.username?.[0]?.toUpperCase() || "O"}
                           </div>
                           <div className="rc-comment-input-area">
-                            {/* Küfür / Topluluk Kuralı Uyarısı */}
                             {profanityWarning && (
                               <div className="rc-profanity-alert">
                                 <span>{profanityWarning}</span>
                               </div>
                             )}
 
-                            {/* Yanıt bilgisi */}
                             {replyTarget && (
                               <div className="rc-reply-indicator">
                                 <span>@{replyTarget.username} kullanıcısına yanıt veriliyor</span>
@@ -423,7 +506,7 @@ export default function ReadChapter() {
                                   setProfanityWarning("");
                                 }}
                               >
-                                İptal
+                                Vazgeç
                               </button>
                               <button
                                 className="rc-comment-submit"
@@ -448,32 +531,34 @@ export default function ReadChapter() {
             })
           )}
         </div>
-      </div>
+      </article>
 
       {/* Alt Gezinme Butonları */}
       <div className="rc-nav">
-        <button
-          className="rc-nav-btn rc-nav-prev"
-          onClick={() => prevChapter && navigate(`/books/${bookId}/read/${prevChapter.id}`)}
-          disabled={!prevChapter}
-        >
-          <span className="rc-nav-arrow">←</span>
-          <span className="rc-nav-info">
-            <span className="rc-nav-label">Önceki Bölüm</span>
-            <span className="rc-nav-name">{prevChapter ? prevChapter.title : "—"}</span>
-          </span>
-        </button>
-        <button
-          className="rc-nav-btn rc-nav-next"
-          onClick={() => nextChapter && navigate(`/books/${bookId}/read/${nextChapter.id}`)}
-          disabled={!nextChapter}
-        >
-          <span className="rc-nav-info">
-            <span className="rc-nav-label">Sonraki Bölüm</span>
-            <span className="rc-nav-name">{nextChapter ? nextChapter.title : "—"}</span>
-          </span>
-          <span className="rc-nav-arrow">→</span>
-        </button>
+        <div className="rc-nav-inner">
+          <button
+            className="rc-nav-btn rc-nav-prev"
+            onClick={() => prevChapter && navigate(`/books/${bookId}/read/${prevChapter.id}`)}
+            disabled={!prevChapter}
+          >
+            <span className="rc-nav-arrow">←</span>
+            <span className="rc-nav-info">
+              <span className="rc-nav-label">Önceki Bölüm</span>
+              <span className="rc-nav-name">{prevChapter ? prevChapter.title : "İlk Bölüm"}</span>
+            </span>
+          </button>
+          <button
+            className="rc-nav-btn rc-nav-next"
+            onClick={() => nextChapter && navigate(`/books/${bookId}/read/${nextChapter.id}`)}
+            disabled={!nextChapter}
+          >
+            <span className="rc-nav-info">
+              <span className="rc-nav-label">Sonraki Bölüm</span>
+              <span className="rc-nav-name">{nextChapter ? nextChapter.title : "Son Bölüm"}</span>
+            </span>
+            <span className="rc-nav-arrow">→</span>
+          </button>
+        </div>
       </div>
 
       {/* Kullanıcı Engelleme Onay Modalı */}
@@ -482,7 +567,7 @@ export default function ReadChapter() {
           <div className="apm-card" onClick={(e) => e.stopPropagation()}>
             <div
               className="apm-icon-wrapper"
-              style={{ background: "#FEE2E2", color: "#DC2626", display: "flex", alignItems: "center", justifyContent: "center" }}
+              style={{ background: "#FDF2F0", color: "#C93B2B", display: "flex", alignItems: "center", justifyContent: "center" }}
             >
               <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="12" cy="12" r="10"></circle>
@@ -498,7 +583,7 @@ export default function ReadChapter() {
             <div className="apm-actions">
               <button
                 className="apm-btn apm-btn-primary"
-                style={{ background: "#DC2626", color: "#FFFFFF" }}
+                style={{ background: "#C93B2B", color: "#FFFFFF" }}
                 onClick={handleBlockConfirm}
               >
                 Evet, Kullanıcıyı Engelle
