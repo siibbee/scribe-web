@@ -111,7 +111,7 @@ export default function BookDetail() {
           {/* Sağ: Editöryal Detaylar */}
           <div className="bd-info-col">
             <div className="bd-meta-badges">
-              <span className="bd-eyebrow-pill">✦ SCRIBE ESERİ</span>
+              <span className="bd-eyebrow-pill">SCRIBE ESERİ</span>
               {book.category && <span className="bd-category">{book.category}</span>}
               {Number(book.read_count) > 0 && (
                 <span className="bd-read-badge" title="Toplam Okunma Sayısı">
@@ -138,7 +138,7 @@ export default function BookDetail() {
                 </div>
                 <div className="bd-author-text">
                   <span className="bd-author-label">ESER YAZARI</span>
-                  <span className="bd-author-name">✦ {book.author_username}</span>
+                  <span className="bd-author-name">{book.author_username}</span>
                 </div>
                 {book.author_id && <span className="bd-author-arrow">Profili Gör →</span>}
               </div>

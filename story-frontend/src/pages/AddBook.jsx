@@ -101,7 +101,7 @@ export default function AddBook() {
           ← Yazar Profiline Dön
         </button>
 
-        <span className="addbook-eyebrow">✦ YAZAR STÜDYOSU</span>
+        <span className="addbook-eyebrow">YENİ ESER</span>
         <h1 className="addbook-title">Yeni Eser Oluştur</h1>
         <p className="addbook-subtitle">
           Scribe kütüphanesinde okurlarla buluşacak yeni hikayenizin detaylarını girin.
@@ -190,7 +190,7 @@ export default function AddBook() {
         <div className="addbook-divider" />
 
         <button className="addbook-btn" onClick={handleSubmit} disabled={loading}>
-          {loading ? <><span className="addbook-spinner" /> Yayınlanıyor…</> : "✦ Eseri Kaydet ve Yayınla"}
+          {loading ? <><span className="addbook-spinner" /> Yayınlanıyor…</> : "Eseri Kaydet ve Yayınla"}
         </button>
       </div>
 

@@ -220,7 +220,7 @@ export default function Home() {
                     title={`${featuredBook.title} kitabını incele`}
                   >
                     <div className="showcase-top-bar">
-                      <span className="showcase-pill">★ HAFTANIN ÖNE ÇIKANI</span>
+                      <span className="showcase-pill">HAFTANIN ÖNE ÇIKANI</span>
                       <span className="showcase-rank-badge">#1 Seçki</span>
                     </div>
 
@@ -249,7 +249,6 @@ export default function Home() {
                         <h3 className="showcase-book-title">{featuredBook.title}</h3>
 
                         <p className="showcase-book-author">
-                          <span className="feather-sig">✦</span>{" "}
                           {featuredBook.author_username || "Scribe Yazarı"}
                         </p>
 
@@ -275,7 +274,7 @@ export default function Home() {
                 ) : (
                   <div className="showcase-main-card">
                     <div className="showcase-top-bar">
-                      <span className="showcase-pill">★ EDİTÖRYAL VİTRİN</span>
+                      <span className="showcase-pill">ÖNE ÇIKAN SEÇKİ</span>
                     </div>
                     <div className="showcase-book-body">
                       <div className="showcase-cover-3d">
@@ -286,7 +285,7 @@ export default function Home() {
                       <div className="showcase-book-details">
                         <span className="showcase-book-tag">Edebiyat</span>
                         <h3 className="showcase-book-title">Sonsuz Sayfalar</h3>
-                        <p className="showcase-book-author">✦ Kendi Dünyanı Yarat</p>
+                        <p className="showcase-book-author">Kendi Dünyanı Yarat</p>
                       </div>
                     </div>
                   </div>
@@ -302,7 +301,7 @@ export default function Home() {
                 </div>
 
                 <div className="floating-badge badge-bottom-left">
-                  <span className="badge-initial">✦</span>
+                  <span className="badge-initial">S.</span>
                   <div className="badge-text-group">
                     <span className="badge-head">Sıcak Parşömen</span>
                     <span className="badge-sub">Göz yormayan okuma</span>
@@ -319,7 +318,6 @@ export default function Home() {
         <section className="reading-desk-section">
           <div className="reading-desk-header">
             <div className="eyebrow-row">
-              <span className="eyebrow-icon-box">✦</span>
               <span className="eyebrow-label">OKUMA MASAN</span>
             </div>
             <span className="reading-desk-last-pill">Son okuduğun eser</span>
@@ -386,13 +384,12 @@ export default function Home() {
         </section>
       )}
 
-      {/* KÜTÜPHANE & EDİTÖRYAL VİTRİN */}
+      {/* KÜTÜPHANE & SEÇKİ */}
       <section className="library" id="library-section">
         <div className="library-header-row">
           <div>
             <div className="eyebrow-row">
-              <span className="eyebrow-icon-box">✦</span>
-              <span className="eyebrow-label">EDİTÖRYAL VİTRİN</span>
+              <span className="eyebrow-label">KÜTÜPHANE</span>
             </div>
             <h2>Kütüphane & Seçki</h2>
             <p className="library-subtitle">İlgi alanına uygun hikayeleri ve dünyaları keşfet</p>
@@ -538,7 +535,6 @@ export default function Home() {
                     <h3 className="book-card-title" title={book.title}>{book.title}</h3>
 
                     <p className="book-card-author" title={book.author_username || "Anonim"}>
-                      <span className="author-feather">✦</span>
                       <span>{book.author_username || "Anonim"}</span>
                     </p>
 
@@ -568,8 +564,7 @@ export default function Home() {
           <div className="section-header-row">
             <div>
               <div className="eyebrow-row">
-                <span className="eyebrow-icon-box">✦</span>
-                <span className="eyebrow-label">YAZARLAR LONCASI</span>
+                <span className="eyebrow-label">YAZAR TOPLULUĞU</span>
               </div>
               <h2>Öne Çıkan Yazarlar</h2>
               <p className="section-subtitle">Hikayeleriyle ilham veren yetenekli kalemleri keşfedin</p>
@@ -602,7 +597,7 @@ export default function Home() {
                         </div>
                       </div>
                       {index < 3 && (
-                        <span className="author-top-badge" title="Öne Çıkan Yazar">★</span>
+                        <span className="author-top-badge" title="Öne Çıkan Yazar">#{index + 1}</span>
                       )}
                     </div>
                     <h4 className="author-strip-name" title={author.username}>{author.username}</h4>
@@ -623,7 +618,6 @@ export default function Home() {
         <div className="section-header-row">
           <div>
             <div className="eyebrow-row">
-              <span className="eyebrow-icon-box">✦</span>
               <span className="eyebrow-label">KEŞİF RAFI</span>
             </div>
             <h2>En Son Eklenen Bölümler</h2>
@@ -681,7 +675,6 @@ export default function Home() {
                       </h3>
 
                       <p className="latest-card-book-title" title={chapter.book_title}>
-                        <span className="author-feather">✦</span>
                         <span>{chapter.book_title}</span>
                       </p>
                     </div>
@@ -807,7 +800,12 @@ export default function Home() {
                         <span className="phone-greeting">Merhaba, Okur</span>
                       </div>
                     </div>
-                    <span className="phone-bell-btn">🔔</span>
+                    <span className="phone-bell-btn">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                      </svg>
+                    </span>
                   </div>
 
                   {/* Mobil Okuma Masan (Dark Espresso Card) */}
@@ -841,7 +839,7 @@ export default function Home() {
                     <div className="phone-book-meta">
                       <span className="phone-genre-mini">ROMAN</span>
                       <h5>Sonsuz Sayfalar</h5>
-                      <p>✦ Scribe Kalemi</p>
+                      <p>Scribe Kalemi</p>
                     </div>
                   </div>
 
@@ -857,10 +855,10 @@ export default function Home() {
               </div>
 
               <div className="phone-floating-pill pill-top">
-                <span>★ Editöryal Lüks Tasarım</span>
+                <span>Sıcak Parşömen Modu</span>
               </div>
               <div className="phone-floating-pill pill-bottom">
-                <span>✦ Web & Mobil Senkron</span>
+                <span>Web & Mobil Senkron</span>
               </div>
             </div>
           </div>

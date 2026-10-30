@@ -54,12 +54,12 @@ export default function ReadChapter() {
   const { user } = useContext(AuthContext);
   const currentUser = user?.user || user;
 
-  const [book, setBook]               = useState(null);
-  const [chapter, setChapter]         = useState(null);
-  const [chapters, setChapters]       = useState([]);
-  const [loading, setLoading]         = useState(true);
+  const [book, setBook] = useState(null);
+  const [chapter, setChapter] = useState(null);
+  const [chapters, setChapters] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [comments, setComments]       = useState([]);
+  const [comments, setComments] = useState([]);
   const [scrollProgress, setScrollProgress] = useState(0);
 
   // Okuma punto boyutu (16px - 24px)
@@ -71,12 +71,12 @@ export default function ReadChapter() {
   // Aktif paragraf paneli: { index }
   const [activePanel, setActivePanel] = useState(null);
   const [commentText, setCommentText] = useState("");
-  const [submitting, setSubmitting]   = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [profanityWarning, setProfanityWarning] = useState("");
 
   // Engelleme modalı ve re-render tetikleyicisi
   const [confirmBlockUser, setConfirmBlockUser] = useState(null);
-  const [, setBlockedTick]                      = useState(0);
+  const [, setBlockedTick] = useState(0);
 
   // Hangi yoruma yanıt verildiğini tutan state: { commentId, username }
   const [replyTarget, setReplyTarget] = useState(null);
@@ -86,7 +86,7 @@ export default function ReadChapter() {
       const next = Math.min(24, Math.max(15, prev + delta));
       try {
         localStorage.setItem("@scribe_reader_font_size", String(next));
-      } catch {}
+      } catch { }
       return next;
     });
   };
@@ -129,7 +129,7 @@ export default function ReadChapter() {
               updatedAt: new Date().toISOString(),
             })
           );
-        } catch {}
+        } catch { }
       })
       .finally(() => setLoading(false));
   }, [chapterId, bookId]);
@@ -176,8 +176,8 @@ export default function ReadChapter() {
   if (!chapter) return <div className="rc-loading"><p>Bölüm bulunamadı.</p></div>;
 
   const currentIndex = chapters.findIndex((c) => c.id === chapter.id);
-  const prevChapter  = currentIndex > 0 ? chapters[currentIndex - 1] : null;
-  const nextChapter  = currentIndex < chapters.length - 1 ? chapters[currentIndex + 1] : null;
+  const prevChapter = currentIndex > 0 ? chapters[currentIndex - 1] : null;
+  const nextChapter = currentIndex < chapters.length - 1 ? chapters[currentIndex + 1] : null;
 
   const paragraphs = chapter.content
     ? splitIntoCommentParagraphs(chapter.content)
@@ -336,7 +336,7 @@ export default function ReadChapter() {
           <span className="rc-chapter-num">BÖLÜM {chapter.order_number}</span>
           <h1 className="rc-title">{chapter.title}</h1>
           {book?.author_username && (
-            <p className="rc-book-author">✦ {book.author_username}</p>
+            <p className="rc-book-author">{book.author_username}</p>
           )}
           <div className="rc-divider" />
         </div>

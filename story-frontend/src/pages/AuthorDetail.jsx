@@ -91,7 +91,7 @@ export default function AuthorDetail() {
               <span>{initial}</span>
             </div>
           </div>
-          <span className="author-detail-eyebrow">✦ SCRIBE YAZARI</span>
+          <span className="author-detail-eyebrow">SCRIBE YAZARI</span>
           <h2>{displayName}</h2>
           <div className="author-detail-stats">
             <span className="author-stat-chip">

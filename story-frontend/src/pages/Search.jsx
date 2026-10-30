@@ -39,7 +39,7 @@ export default function Search() {
     <div className="search-page">
       <div className="search-container">
         <div className="search-header">
-          <span className="search-eyebrow">✦ KÜTÜPHANE ARAMASI</span>
+          <span className="search-eyebrow">KÜTÜPHANE ARAMASI</span>
           <h2>{query ? `"${query}" için Sonuçlar` : "Scribe Kütüphanesinde Ara"}</h2>
 
           <form className="search-inline-form" onSubmit={handleSearchSubmit}>
@@ -88,7 +88,7 @@ export default function Search() {
                 </div>
                 <div className="search-book-title">{book.title}</div>
                 {book.author_username && (
-                  <div className="search-book-author">✦ {book.author_username}</div>
+                  <div className="search-book-author">{book.author_username}</div>
                 )}
               </div>
             ))}
