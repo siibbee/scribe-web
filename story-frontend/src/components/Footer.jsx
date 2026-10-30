@@ -1,4 +1,4 @@
-﻿import "./footer.css";
+import "./footer.css";
 import InstagramIcon from '@mui/icons-material/Instagram';
 import { Link } from "react-router-dom";
 
@@ -17,9 +17,8 @@ export default function Footer() {
         {/* ORTA: Sosyal Medya ve Mesaj */}
         <div className="footer-center">
           <h2>
-            Scribe sürprizlerini<br />
-            kaçırmamak için bizi sosyal<br />
-            medyada takip et!
+            Bizi sosyal medyada<br />
+            takip edin
           </h2>
           <div className="footer-socials">
             {/* Instagram */}

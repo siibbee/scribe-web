@@ -39,15 +39,15 @@ export default function Search() {
     <div className="search-page">
       <div className="search-container">
         <div className="search-header">
-          <span className="search-eyebrow">KÜTÜPHANE ARAMASI</span>
-          <h2>{query ? `"${query}" için Sonuçlar` : "Scribe Kütüphanesinde Ara"}</h2>
+          <span className="search-eyebrow">ARAMA</span>
+          <h2>{query ? `"${query}" için Sonuçlar` : "Kitap Ara"}</h2>
 
           <form className="search-inline-form" onSubmit={handleSearchSubmit}>
             <input
               type="text"
               value={inputVal}
               onChange={(e) => setInputVal(e.target.value)}
-              placeholder="Eser adı, yazar veya kategori ara..."
+              placeholder="Kitap, yazar veya kategori ara..."
             />
             <button type="submit">Ara</button>
           </form>
@@ -60,7 +60,7 @@ export default function Search() {
             <div className="search-empty-monogram">S.</div>
             <p className="search-empty">
               {query
-                ? `"${query}" ile eşleşen bir eser bulunamadı.`
+                ? `"${query}" ile eşleşen bir kitap bulunamadı.`
                 : "Aramak istediğiniz kelimeyi yukarıdaki alana yazın."}
             </p>
           </div>

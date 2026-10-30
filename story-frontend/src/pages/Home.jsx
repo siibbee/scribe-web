@@ -175,7 +175,7 @@ export default function Home() {
             <div className="hero-banner-content">
               <div className="banner-badge">
                 <span className="badge-monogram">S.</span>
-                <span>EDEBİYAT VE ÖZGÜR KALEMLER TOPLULUĞU</span>
+                <span>HİKAYE VE KİTAP TOPLULUĞU</span>
               </div>
 
               <h1 className="banner-title">
@@ -183,12 +183,12 @@ export default function Home() {
               </h1>
 
               <p className="banner-desc">
-                Sıcak parşömen dokusunda okuyun, ilham geldiğinde yazın ve eserlerinizi Scribe okurlarıyla paylaşın. Web ve mobil uygulamamızda kaldığınız yerden kesintisiz devam edin.
+                Hikayeler okuyun, kendi kitabınızı yazın ve okurlarla paylaşın. Kaldığınız yerden hem web'de hem de mobilde devam edin.
               </p>
 
               <div className="banner-actions">
                 <button className="banner-btn-primary" onClick={handleStartWriting}>
-                  <span>Hikaye Yazmaya Başla</span>
+                  <span>Kitap Yazmaya Başla</span>
                   <span className="btn-arrow">→</span>
                 </button>
 
@@ -220,8 +220,8 @@ export default function Home() {
                     title={`${featuredBook.title} kitabını incele`}
                   >
                     <div className="showcase-top-bar">
-                      <span className="showcase-pill">HAFTANIN ÖNE ÇIKANI</span>
-                      <span className="showcase-rank-badge">#1 Seçki</span>
+                      <span className="showcase-pill">ÖNE ÇIKAN KİTAP</span>
+                      <span className="showcase-rank-badge">#1</span>
                     </div>
 
                     <div className="showcase-book-body">
@@ -274,7 +274,7 @@ export default function Home() {
                 ) : (
                   <div className="showcase-main-card">
                     <div className="showcase-top-bar">
-                      <span className="showcase-pill">ÖNE ÇIKAN SEÇKİ</span>
+                      <span className="showcase-pill">ÖNE ÇIKAN</span>
                     </div>
                     <div className="showcase-book-body">
                       <div className="showcase-cover-3d">
@@ -283,28 +283,28 @@ export default function Home() {
                         <div className="book-cover-page-edge" />
                       </div>
                       <div className="showcase-book-details">
-                        <span className="showcase-book-tag">Edebiyat</span>
+                        <span className="showcase-book-tag">Roman</span>
                         <h3 className="showcase-book-title">Sonsuz Sayfalar</h3>
-                        <p className="showcase-book-author">Kendi Dünyanı Yarat</p>
+                        <p className="showcase-book-author">Scribe</p>
                       </div>
                     </div>
                   </div>
                 )}
 
-                {/* Yüzen Editöryal Rozetler */}
+                {/* Yüzen Rozetler */}
                 <div className="floating-badge badge-top-right">
                   <span className="badge-initial">S.</span>
                   <div className="badge-text-group">
-                    <span className="badge-head">Özgür Kalemler</span>
-                    <span className="badge-sub">Web & Mobil Senkron</span>
+                    <span className="badge-head">Senkronize</span>
+                    <span className="badge-sub">Web & Mobil</span>
                   </div>
                 </div>
 
                 <div className="floating-badge badge-bottom-left">
                   <span className="badge-initial">S.</span>
                   <div className="badge-text-group">
-                    <span className="badge-head">Sıcak Parşömen</span>
-                    <span className="badge-sub">Göz yormayan okuma</span>
+                    <span className="badge-head">Gece Modu</span>
+                    <span className="badge-sub">Rahat okuma</span>
                   </div>
                 </div>
               </div>
@@ -313,14 +313,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* OKUMA MASAN (Mobil Uygulamadaki ContinueReadingCard Bileşeninin Web Karşılığı) */}
+      {/* KALDIĞIN YERDEN DEVAM ET */}
       {lastRead && lastRead.bookId && (
         <section className="reading-desk-section">
           <div className="reading-desk-header">
             <div className="eyebrow-row">
-              <span className="eyebrow-label">OKUMA MASAN</span>
+              <span className="eyebrow-label">KALDIĞIN YERDEN</span>
             </div>
-            <span className="reading-desk-last-pill">Son okuduğun eser</span>
+            <span className="reading-desk-last-pill">Son okunan kitap</span>
           </div>
 
           <div
@@ -384,15 +384,15 @@ export default function Home() {
         </section>
       )}
 
-      {/* KÜTÜPHANE & SEÇKİ */}
+      {/* KÜTÜPHANE */}
       <section className="library" id="library-section">
         <div className="library-header-row">
           <div>
             <div className="eyebrow-row">
               <span className="eyebrow-label">KÜTÜPHANE</span>
             </div>
-            <h2>Kütüphane & Seçki</h2>
-            <p className="library-subtitle">İlgi alanına uygun hikayeleri ve dünyaları keşfet</p>
+            <h2>Kütüphane</h2>
+            <p className="library-subtitle">Farklı kategorilerdeki hikayeleri keşfedin</p>
           </div>
 
           <div className="library-header-right">
@@ -405,14 +405,14 @@ export default function Home() {
                   setInlineSearch("");
                 }}
               >
-                Filtreyi Temizle ({filteredBooks.length} eser)
+                Filtreyi Temizle ({filteredBooks.length} kitap)
               </button>
             )}
-            <span className="section-count-pill">{filteredBooks.length} Eser</span>
+            <span className="section-count-pill">{filteredBooks.length} Kitap</span>
           </div>
         </div>
 
-        {/* Mobil Uygulamadaki CategoryChips Arama + Kategori Çubuğu */}
+        {/* Arama + Kategori Çubuğu */}
         <div className="editorial-filter-bar">
           <div className="editorial-search-box">
             <span className="editorial-search-badge">
@@ -424,7 +424,7 @@ export default function Home() {
             <input
               type="text"
               className="editorial-search-input"
-              placeholder="Eser, yazar veya edebi tür ara..."
+              placeholder="Kitap, yazar veya kategori ara..."
               value={inlineSearch}
               onChange={(e) => setInlineSearch(e.target.value)}
             />
@@ -564,10 +564,10 @@ export default function Home() {
           <div className="section-header-row">
             <div>
               <div className="eyebrow-row">
-                <span className="eyebrow-label">YAZAR TOPLULUĞU</span>
+                <span className="eyebrow-label">YAZARLAR</span>
               </div>
               <h2>Öne Çıkan Yazarlar</h2>
-              <p className="section-subtitle">Hikayeleriyle ilham veren yetenekli kalemleri keşfedin</p>
+              <p className="section-subtitle">Toplulukta öne çıkan yazarları keşfedin</p>
             </div>
             <button className="view-all-authors-btn" onClick={() => navigate("/authors")}>
               Tümünü Gör ↗
@@ -602,7 +602,7 @@ export default function Home() {
                     </div>
                     <h4 className="author-strip-name" title={author.username}>{author.username}</h4>
                     <span className="author-strip-books">
-                      {author.book_count || 1} Eser
+                      {author.book_count || 1} Kitap
                     </span>
                     <span className="author-strip-link">Profili Gör →</span>
                   </div>
@@ -613,15 +613,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* EN SON EKLENENLER (Mobil Uygulamadaki LatestStoriesList "KEŞİF RAFI" İle Birebir) */}
+      {/* EN SON EKLENENLER */}
       <section className="latest">
         <div className="section-header-row">
           <div>
             <div className="eyebrow-row">
-              <span className="eyebrow-label">KEŞİF RAFI</span>
+              <span className="eyebrow-label">YENİ BÖLÜMLER</span>
             </div>
-            <h2>En Son Eklenen Bölümler</h2>
-            <p className="section-subtitle">Topluluğun yeni yayınlanan en taze bölümlerini keşfedin</p>
+            <h2>Son Eklenen Bölümler</h2>
+            <p className="section-subtitle">Yeni yayınlanan bölümlere göz atın</p>
           </div>
           {latestChapters.length > 0 && (
             <span className="section-count-pill">{latestChapters.length} Bölüm</span>
@@ -702,7 +702,7 @@ export default function Home() {
         )}
       </section>
 
-      {/* MOBİL UYGULAMA VİTRİNİ (GOOGLE PLAY) */}
+      {/* MOBİL UYGULAMA (GOOGLE PLAY) */}
       <section className="mobile-app-section">
         <div className="mobile-app-card">
           <div className="app-card-glow-left" />
@@ -713,15 +713,15 @@ export default function Home() {
             <div className="mobile-app-content">
               <div className="mobile-app-badge">
                 <span className="mobile-badge-dot" />
-                <span>Scribe Mobil ile Tam Entegre</span>
+                <span>Mobil Uygulama</span>
               </div>
 
               <h2 className="mobile-app-title">
-                Scribe Editöryal Deneyimi <span className="mobile-title-highlight">Cebinizde</span>
+                Scribe Deneyimi <span className="mobile-title-highlight">Cebinizde</span>
               </h2>
 
               <p className="mobile-app-desc">
-                Web sitemiz ve Scribe mobil uygulamamız aynı altyapı ve aynı sıcak parşömen tasarım diliyle çalışır. Web'de başladığınız bir kitaba veya taslağa mobilde kaldığınız yerden devam edin.
+                Web'de başladığınız bir kitaba mobil uygulamada kaldığınız yerden devam edin. Çevrimdışı okuma ve anlık bildirimlerle hikayeleriniz her zaman yanınızda.
               </p>
 
               <div className="mobile-feature-list">
@@ -733,8 +733,8 @@ export default function Home() {
                     </svg>
                   </span>
                   <div>
-                    <h4>Anlık Yeni Bölüm Bildirimleri</h4>
-                    <p>Takip ettiğin kitaplara yeni bölüm geldiğinde telefonuna anında bildirim gelsin</p>
+                    <h4>Yeni Bölüm Bildirimleri</h4>
+                    <p>Takip ettiğiniz kitaplara yeni bölüm eklendiğinde anında haberdar olun</p>
                   </div>
                 </div>
 
@@ -746,8 +746,8 @@ export default function Home() {
                     </svg>
                   </span>
                   <div>
-                    <h4>Sıcak Parşömen & Espresso Gece Modu</h4>
-                    <p>Gözü yormayan edebi tipografi ve 3 boyutlu kitap kapağı estetiği</p>
+                    <h4>Gece Modu ve Rahat Okuma</h4>
+                    <p>Gözü yormayan koyu tema ile uzun süreli okuma konforu</p>
                   </div>
                 </div>
 
@@ -758,8 +758,8 @@ export default function Home() {
                     </svg>
                   </span>
                   <div>
-                    <h4>Web & Mobil Senkron Yazar Stüdyosu</h4>
-                    <p>İster bilgisayarda ister telefonda bölüm yaz, düzenle ve anında yayınla</p>
+                    <h4>Web ve Mobil Senkronizasyon</h4>
+                    <p>İster bilgisayardan ister telefondan bölüm yazın ve yayınlayın</p>
                   </div>
                 </div>
               </div>
@@ -780,7 +780,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Sağ Görsel: Scribe Mobil Uygulama Birebir Ekran Mockup'ı */}
+            {/* Sağ Görsel: Scribe Mobil Uygulama Ekran Mockup'ı */}
             <div className="mobile-app-visual">
               <div className="phone-mockup-frame">
                 <div className="phone-notch">
@@ -796,7 +796,7 @@ export default function Home() {
                         <div className="phone-avatar-circle">S</div>
                       </div>
                       <div>
-                        <span className="phone-eyebrow">S. SCRIBE KÜTÜPHANESİ</span>
+                        <span className="phone-eyebrow">SCRIBE</span>
                         <span className="phone-greeting">Merhaba, Okur</span>
                       </div>
                     </div>
@@ -814,13 +814,13 @@ export default function Home() {
                       <span>S.</span>
                     </div>
                     <div className="phone-espresso-info">
-                      <span className="phone-espresso-tag">OKUMA MASAN</span>
+                      <span className="phone-espresso-tag">SON OKUNAN</span>
                       <h5>{featuredBook ? featuredBook.title : "Gecenin Külleri"}</h5>
                       <p>{featuredBook ? featuredBook.author_username : "Scribe Yazarı"}</p>
                       <div className="phone-progress-bar">
                         <div className="phone-progress-fill" />
                       </div>
-                      <span className="phone-resume-btn">Kaldığın Yerden Devam Et →</span>
+                      <span className="phone-resume-btn">Devam Et →</span>
                     </div>
                   </div>
 
@@ -839,7 +839,7 @@ export default function Home() {
                     <div className="phone-book-meta">
                       <span className="phone-genre-mini">ROMAN</span>
                       <h5>Sonsuz Sayfalar</h5>
-                      <p>Scribe Kalemi</p>
+                      <p>Scribe</p>
                     </div>
                   </div>
 
@@ -855,10 +855,10 @@ export default function Home() {
               </div>
 
               <div className="phone-floating-pill pill-top">
-                <span>Sıcak Parşömen Modu</span>
+                <span>Gece Modu</span>
               </div>
               <div className="phone-floating-pill pill-bottom">
-                <span>Web & Mobil Senkron</span>
+                <span>Web & Mobil</span>
               </div>
             </div>
           </div>

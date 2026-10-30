@@ -91,11 +91,11 @@ export default function AuthorDetail() {
               <span>{initial}</span>
             </div>
           </div>
-          <span className="author-detail-eyebrow">SCRIBE YAZARI</span>
+          <span className="author-detail-eyebrow">YAZAR</span>
           <h2>{displayName}</h2>
           <div className="author-detail-stats">
             <span className="author-stat-chip">
-              <strong>{books.length}</strong> Yayınlanmış Eser
+              <strong>{books.length}</strong> Kitap
             </span>
             <span className="author-stat-chip">
               <strong>{totalReads}</strong> Okunma
@@ -105,8 +105,8 @@ export default function AuthorDetail() {
 
         {/* Kitaplar */}
         <div className="author-books-section-head">
-          <span className="author-books-eyebrow">YAZARIN KÜLLİYATI</span>
-          <h3>Yayınlanan Eserler</h3>
+          <span className="author-books-eyebrow">KİTAPLAR</span>
+          <h3>Yayınlanan Kitaplar</h3>
         </div>
 
         {books.length > 0 ? (

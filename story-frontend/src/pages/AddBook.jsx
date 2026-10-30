@@ -101,10 +101,10 @@ export default function AddBook() {
           ← Yazar Profiline Dön
         </button>
 
-        <span className="addbook-eyebrow">YENİ ESER</span>
-        <h1 className="addbook-title">Yeni Eser Oluştur</h1>
+        <span className="addbook-eyebrow">YENİ KİTAP</span>
+        <h1 className="addbook-title">Yeni Kitap Ekle</h1>
         <p className="addbook-subtitle">
-          Scribe kütüphanesinde okurlarla buluşacak yeni hikayenizin detaylarını girin.
+          Hikayenizin detaylarını girin ve okurlarla paylaşın.
         </p>
 
         {/* Kapak Görseli */}
@@ -144,7 +144,7 @@ export default function AddBook() {
 
         {/* Kitap Adı */}
         <div className="addbook-field">
-          <label className="addbook-label">Eser Adı</label>
+          <label className="addbook-label">Kitap Adı</label>
           <input
             className="addbook-input"
             placeholder="örn. Gece Yarısı Kütüphanesi"
@@ -175,10 +175,10 @@ export default function AddBook() {
 
         {/* Açıklama */}
         <div className="addbook-field">
-          <label className="addbook-label">Arka Kapak / Özet</label>
+          <label className="addbook-label">Kitap Özeti</label>
           <textarea
             className="addbook-textarea"
-            placeholder="Hikayeniz hakkında merak uyandıran bir özet yazın…"
+            placeholder="Hikayeniz hakkında bir özet yazın…"
             value={form.description}
             onChange={handleChange("description")}
             maxLength={500}
@@ -190,7 +190,7 @@ export default function AddBook() {
         <div className="addbook-divider" />
 
         <button className="addbook-btn" onClick={handleSubmit} disabled={loading}>
-          {loading ? <><span className="addbook-spinner" /> Yayınlanıyor…</> : "Eseri Kaydet ve Yayınla"}
+          {loading ? <><span className="addbook-spinner" /> Yayınlanıyor…</> : "Kitabı Kaydet ve Yayınla"}
         </button>
       </div>
 

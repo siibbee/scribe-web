@@ -44,7 +44,7 @@ export default function Authors() {
           <span className="authors-eyebrow">YAZARLAR</span>
           <h1 className="authors-title">Scribe Yazarları</h1>
           <p className="authors-subtitle">
-            Orijinal dünyalar kuran, kelimeleriyle ilham veren Scribe hikaye anlatıcılarını keşfedin.
+            Scribe platformundaki hikaye yazarlarını keşfedin.
           </p>
         </div>
 
@@ -85,9 +85,9 @@ export default function Authors() {
                   </div>
                   <h3 className="author-name">{displayName}</h3>
                   <span className="author-badge">
-                    {author.book_count ? `${author.book_count} Eser` : "Scribe Yazarı"}
+                    {author.book_count ? `${author.book_count} Kitap` : "Yazar"}
                   </span>
-                  <span className="author-cta">Eserleri İncele →</span>
+                  <span className="author-cta">Profili Gör →</span>
                 </div>
               );
             })}

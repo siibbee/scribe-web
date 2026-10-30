@@ -122,13 +122,13 @@ export default function Navbar() {
                 <span className="nav-monogram-letter">S.</span>
               </div>
               <div className="nav-brand-stack">
-                <span className="nav-brand-eyebrow">SCRIBE KÜTÜPHANESİ</span>
+                <span className="nav-brand-eyebrow">HİKAYE & KİTAP</span>
                 <span className="nav-logo-text">Scribe</span>
               </div>
             </div>
           </div>
 
-          {/* Orta: Masaüstü Editöryal Hızlı Gezinme */}
+          {/* Orta: Masaüstü Gezinme */}
           <nav className="header-center-nav" aria-label="Ana Gezinme">
             <button
               type="button"
@@ -153,7 +153,7 @@ export default function Navbar() {
                 <path d="M12 20h9" />
                 <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
               </svg>
-              <span>Eser Yaz</span>
+              <span>Kitap Yaz</span>
             </button>
           </nav>
 
@@ -164,7 +164,7 @@ export default function Navbar() {
                 <SearchIcon className="nav-search-inline-icon" />
                 <input
                   type="text"
-                  placeholder="Eser, yazar veya tür ara..."
+                  placeholder="Kitap veya yazar ara..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   autoFocus
