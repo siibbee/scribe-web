@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext.jsx";
 import { getAllBooks, getLatestChapters, getActiveAuthors } from "../services/bookService";
+import { getCoverUrl } from "../utils/coverHelper";
 import Footer from "../components/Footer.jsx";
 import "./home.css";
 
@@ -226,9 +227,9 @@ export default function Home() {
 
                     <div className="showcase-book-body">
                       <div className="showcase-cover-3d">
-                        {featuredBook.cover_url ? (
+                        {getCoverUrl(featuredBook.cover_url) ? (
                           <img
-                            src={featuredBook.cover_url}
+                            src={getCoverUrl(featuredBook.cover_url)}
                             alt={featuredBook.title}
                             className="showcase-book-cover"
                           />
@@ -334,8 +335,8 @@ export default function Home() {
             }
           >
             <div className="reading-desk-cover-wrap">
-              {lastRead.coverUrl ? (
-                <img src={lastRead.coverUrl} alt={lastRead.bookTitle} />
+              {getCoverUrl(lastRead.coverUrl) ? (
+                <img src={getCoverUrl(lastRead.coverUrl)} alt={lastRead.bookTitle} />
               ) : (
                 <div className="reading-desk-cover-placeholder">S.</div>
               )}
@@ -514,8 +515,8 @@ export default function Home() {
                       <span className="book-rank-badge">#{popIndex + 1} Seçki</span>
                     ) : null}
 
-                    {book.cover_url ? (
-                      <img src={book.cover_url} alt={book.title} className="book-cover-img" />
+                    {getCoverUrl(book.cover_url) ? (
+                      <img src={getCoverUrl(book.cover_url)} alt={book.title} className="book-cover-img" />
                     ) : (
                       <div className="book-cover-placeholder">S.</div>
                     )}
@@ -644,9 +645,9 @@ export default function Home() {
                   onClick={() => navigate(`/books/${chapter.book_id}`)}
                 >
                   <div className="latest-card-cover-wrap">
-                    {chapter.book_cover_url ? (
+                    {getCoverUrl(chapter.book_cover_url) ? (
                       <img
-                        src={chapter.book_cover_url}
+                        src={getCoverUrl(chapter.book_cover_url)}
                         alt={chapter.book_title}
                         className="latest-card-cover"
                       />

@@ -12,6 +12,7 @@ import {
 } from "../services/bookService";
 import { containsProfanity } from "../utils/contentFilter";
 import { isUserBlocked, blockUser } from "../utils/moderation";
+import { getCoverUrl } from "../utils/coverHelper";
 import "./readChapter.css";
 
 // Metni cümle/nokta sınırlarına göre ayırır (cümlenin ortasında bölünmeyi engeller)
@@ -120,7 +121,7 @@ export default function ReadChapter() {
               bookId: Number(bookId),
               bookTitle: bk?.title || "Scribe Eseri",
               authorName: bk?.author_username || "Scribe Yazarı",
-              coverUrl: bk?.cover_url || null,
+              coverUrl: getCoverUrl(bk?.cover_url),
               chapterId: ch.id,
               chapterTitle: ch.title,
               chapterOrder: orderNum,

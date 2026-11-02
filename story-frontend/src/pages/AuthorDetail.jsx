@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
+import { getCoverUrl } from "../utils/coverHelper";
 import Footer from "../components/Footer";
 import "./authorDetail.css";
 
@@ -118,8 +119,8 @@ export default function AuthorDetail() {
                 onClick={() => navigate(`/books/${book.id}`)}
               >
                 <div className="book-cover">
-                  {book.cover_url ? (
-                    <img src={book.cover_url} alt={book.title} />
+                  {getCoverUrl(book.cover_url) ? (
+                    <img src={getCoverUrl(book.cover_url)} alt={book.title} />
                   ) : (
                     <div className="no-cover">S.</div>
                   )}

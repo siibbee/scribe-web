@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { getAllBooks } from "../services/bookService";
+import { getCoverUrl } from "../utils/coverHelper";
 import Footer from "../components/Footer";
 import "./search.css";
 
@@ -73,8 +74,8 @@ export default function Search() {
                 onClick={() => navigate(`/books/${book.id}`)}
               >
                 <div className="search-book-cover-wrap">
-                  {book.cover_url ? (
-                    <img src={book.cover_url} alt={book.title} className="search-book-cover" />
+                  {getCoverUrl(book.cover_url) ? (
+                    <img src={getCoverUrl(book.cover_url)} alt={book.title} className="search-book-cover" />
                   ) : (
                     <div className="search-book-placeholder">
                       <span>S.</span>

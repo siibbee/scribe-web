@@ -5,6 +5,7 @@ import {
   getBookById,
   getChaptersByBook
 } from "../services/bookService";
+import { getCoverUrl } from "../utils/coverHelper";
 import Footer from "../components/Footer";
 import "./bookDetail.css";
 
@@ -85,8 +86,8 @@ export default function BookDetail() {
           {/* Sol: 3B Kitap Kapağı Vitrini */}
           <div className="bd-cover-col">
             <div className="bd-cover-wrap">
-              {book.cover_url ? (
-                <img src={book.cover_url} alt={book.title} className="bd-cover-img" />
+              {getCoverUrl(book.cover_url) ? (
+                <img src={getCoverUrl(book.cover_url)} alt={book.title} className="bd-cover-img" />
               ) : (
                 <div className="bd-cover-placeholder">S.</div>
               )}

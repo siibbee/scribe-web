@@ -1,4 +1,4 @@
-﻿import { useState, useEffect, useContext, useRef } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import {
@@ -10,6 +10,7 @@ import {
   deleteChapter,
 } from "../services/bookService";
 import { getBlockedUsers, unblockUser } from "../utils/moderation";
+import { getCoverUrl } from "../utils/coverHelper";
 import Footer from "../components/Footer";
 import "./profile.css";
 
@@ -100,7 +101,7 @@ export default function Profile() {
       cover_url: book.cover_url || "",
     });
     setEditCoverFile(null);
-    setEditCoverPreview(book.cover_url || null);
+    setEditCoverPreview(getCoverUrl(book.cover_url) || null);
     setEditError("");
   };
 
@@ -325,8 +326,8 @@ export default function Profile() {
                       onClick={() => navigate(`/books/${book.id}`)}
                     >
                       <div className="profile-book-cover">
-                        {book.cover_url ? (
-                          <img src={book.cover_url} alt={book.title} />
+                        {getCoverUrl(book.cover_url) ? (
+                          <img src={getCoverUrl(book.cover_url)} alt={book.title} />
                         ) : (
                           <span className="profile-book-emoji">S.</span>
                         )}
