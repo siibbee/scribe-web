@@ -111,7 +111,7 @@
   width: 48px;
   height: 48px;
   border-radius: 12px;
-  background: #1F1612;
+  background: #5E3C2C;
   border: 1.5px solid var(--primary-color);
   color: #FAF6F0;
   font-family: var(--font-serif);
@@ -167,7 +167,7 @@
 .search-book-placeholder {
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #2B1E19, #1F1612);
+  background: linear-gradient(135deg, #2B1E19, #5E3C2C);
   display: flex;
   align-items: center;
   justify-content: center;

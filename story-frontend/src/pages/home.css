@@ -197,7 +197,7 @@
   padding: 14px 28px;
   border-radius: 15px;
   background: #FAF6F0;
-  color: #1F1612;
+  color: #5E3C2C;
   font-weight: 800;
   font-size: 14.5px;
   cursor: pointer;
@@ -443,7 +443,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  background: #1F1612;
+  background: #5E3C2C;
   border: 1px solid #35261F;
   padding: 8px 13px;
   border-radius: 15px;
@@ -532,7 +532,7 @@
 }
 
 .reading-desk-card {
-  background: #1F1612;
+  background: #5E3C2C;
   border: 1px solid #35261F;
   border-radius: 24px;
   padding: 20px 24px;
@@ -664,7 +664,7 @@
   align-items: center;
   gap: 8px;
   background: #FAF6F0;
-  color: #1F1612;
+  color: #5E3C2C;
   font-size: 13px;
   font-weight: 800;
   padding: 9px 18px;
@@ -1213,7 +1213,7 @@
 }
 
 /* Scribe Editöryal Avatar Tonları */
-.avatar-gradient-0 { background: linear-gradient(135deg, #1F1612, #4A2419); }
+.avatar-gradient-0 { background: linear-gradient(135deg, #5E3C2C, #4A2419); }
 .avatar-gradient-1 { background: linear-gradient(135deg, #9E3E28, #BC563E); }
 .avatar-gradient-2 { background: linear-gradient(135deg, #5C3324, #9E3E28); }
 .avatar-gradient-3 { background: linear-gradient(135deg, #782B19, #C87D20); }
@@ -1602,7 +1602,7 @@
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  background: #1F1612;
+  background: #5E3C2C;
   color: #FAF6F0;
   padding: 11px 24px;
   border-radius: 15px;
@@ -1647,7 +1647,7 @@
 .phone-mockup-frame {
   width: 280px;
   height: 540px;
-  background: #1F1612;
+  background: #5E3C2C;
   border: 8px solid #2B1D17;
   border-radius: 44px;
   box-shadow: 0 25px 60px rgba(30, 21, 17, 0.28);
@@ -1662,7 +1662,7 @@
   transform: translateX(-50%);
   width: 86px;
   height: 18px;
-  background: #1F1612;
+  background: #5E3C2C;
   border-radius: 12px;
   z-index: 10;
   display: flex;
@@ -1718,7 +1718,7 @@
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: #1F1612;
+  background: #5E3C2C;
   color: #FAF6F0;
   font-family: var(--font-serif, "Playfair Display", Georgia, serif);
   font-size: 12px;
@@ -1758,7 +1758,7 @@
 
 /* Minyatür Okuma Masan Kartı */
 .phone-espresso-card {
-  background: #1F1612;
+  background: #5E3C2C;
   border-radius: 16px;
   padding: 11px;
   display: flex;
@@ -1830,7 +1830,7 @@
   display: block;
   text-align: center;
   background: #FAF6F0;
-  color: #1F1612;
+  color: #5E3C2C;
   font-size: 8.5px;
   font-weight: 800;
   padding: 4px 6px;

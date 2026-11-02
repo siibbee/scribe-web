@@ -210,7 +210,7 @@
 .ac-toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
 
 .ac-toast.success {
-  background: #1F1612;
+  background: #5E3C2C;
   border-left: 4px solid var(--primary-color);
   color: #FAF6F0;
 }

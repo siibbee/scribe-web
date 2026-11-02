@@ -206,7 +206,7 @@
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: var(--espresso-bg, #1F1612);
+  background: var(--espresso-bg, #5E3C2C);
   color: #FAF6F0;
   font-family: var(--font-serif, "Playfair Display", Georgia, serif);
   font-size: 13.5px;
@@ -456,7 +456,7 @@
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  background: var(--espresso-bg, #1F1612);
+  background: var(--espresso-bg, #5E3C2C);
   color: #FAF6F0;
   font-family: var(--font-serif, "Playfair Display", Georgia, serif);
   font-size: 17px;
