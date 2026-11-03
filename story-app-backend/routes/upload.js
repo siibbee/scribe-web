@@ -3,6 +3,8 @@ import multer from "multer";
 import { v2 as cloudinary } from "cloudinary";
 import { Readable } from "stream";
 import dotenv from "dotenv";
+import authMiddleware from "../middleware/authMiddleware.js";
+
 dotenv.config();
 
 const router = express.Router();
@@ -14,14 +16,17 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-// Multer — dosyayı memory'de tut
+// Multer — dosyayı memory'de tut (Maksimum 5MB)
 const storage = multer.memoryStorage();
 const upload  = multer({
   storage,
   limits: { fileSize: 5 * 1024 * 1024 }, // max 5MB
   fileFilter: (req, file, cb) => {
-    if (file.mimetype.startsWith("image/")) cb(null, true);
-    else cb(new Error("Sadece görsel yüklenebilir."));
+    if (file.mimetype && file.mimetype.startsWith("image/")) {
+      cb(null, true);
+    } else {
+      cb(new Error("Sadece görsel yüklenebilir."));
+    }
   },
 });
 
@@ -38,25 +43,30 @@ const uploadToCloudinary = (buffer) =>
     Readable.from(buffer).pipe(stream);
   });
 
-// POST /api/upload/cover
-router.post("/cover", (req, res, next) => {
-  upload.single("cover")(req, res, (err) => {
-    if (err) {
-      return res.status(400).json({ message: err.message });
+// POST /api/upload/cover — Yalnızca giriş yapmış kullanıcılar görsel yükleyebilir
+router.post(
+  "/cover",
+  authMiddleware,
+  (req, res, next) => {
+    upload.single("cover")(req, res, (err) => {
+      if (err) {
+        return res.status(400).json({ message: err.message });
+      }
+      next();
+    });
+  },
+  async (req, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ message: "Görsel bulunamadı." });
+      }
+      const result = await uploadToCloudinary(req.file.buffer);
+      res.json({ url: result.secure_url, public_id: result.public_id });
+    } catch (error) {
+      console.error("UPLOAD ERROR:", error);
+      res.status(500).json({ message: "Görsel yüklenemedi.", error: error.message });
     }
-    next();
-  });
-}, async (req, res) => {
-  try {
-    if (!req.file) {
-      return res.status(400).json({ message: "Görsel bulunamadı." });
-    }
-    const result = await uploadToCloudinary(req.file.buffer);
-    res.json({ url: result.secure_url, public_id: result.public_id });
-  } catch (error) {
-    console.error("UPLOAD ERROR:", error);
-    res.status(500).json({ message: "Görsel yüklenemedi.", error: error.message });
   }
-});
+);
 
 export default router;

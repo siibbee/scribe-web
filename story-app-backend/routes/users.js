@@ -5,14 +5,14 @@ const router = express.Router();
 
 router.get("/", async (req, res, next) => {
   try {
-    let queryText = "SELECT id, username, email FROM users ORDER BY username ASC";
+    let queryText = "SELECT id, username FROM users ORDER BY username ASC";
     if (req.query.has_book === "true") {
       queryText = `
-        SELECT u.id, u.username, u.email,
+        SELECT u.id, u.username,
                COUNT(b.id)::int as book_count
         FROM users u 
         JOIN books b ON u.id = b.author_id 
-        GROUP BY u.id, u.username, u.email
+        GROUP BY u.id, u.username
         ORDER BY book_count DESC, u.username ASC
       `;
     }
@@ -28,7 +28,7 @@ router.get("/:id", async (req, res, next) => {
     const { id } = req.params;
 
     const result = await pool.query(
-      "SELECT id, username, email FROM users WHERE id = $1",
+      "SELECT id, username FROM users WHERE id = $1",
       [id]
     );
 

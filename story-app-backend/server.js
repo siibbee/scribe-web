@@ -17,7 +17,12 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-app.use(express.json());
+app.use(express.json({ limit: "2mb" }));
+
+// Sağlık kontrolü (Health check)
+app.get("/", (req, res) => {
+  res.json({ status: "online", message: "Scribe API Sunucusu Çalışıyor 🚀" });
+});
 
 app.use("/api/auth",     authRoutes);
 app.use("/api/books",    bookRoutes);

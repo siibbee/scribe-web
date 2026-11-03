@@ -36,3 +36,4 @@ export function getCoverUrl(coverUrl) {
 
   return `/${normalized}`;
 }
+
