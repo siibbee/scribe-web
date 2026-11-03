@@ -1,9 +1,19 @@
 import express from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import  pool from "../db.js";
+import rateLimit from "express-rate-limit";
+import pool from "../db.js";
 
 const router = express.Router();
+
+// Kaba kuvvet (brute-force) saldırılarını engellemek için hız sınırlayıcı
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 dakika
+  max: 15, // 15 dakikada maksimum 15 deneme
+  message: { error: "Çok fazla deneme yapıldı. Lütfen 15 dakika sonra tekrar deneyin." },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
 
 const generateTokens = (userId) => {
   const accessToken = jwt.sign(
@@ -23,10 +33,8 @@ const generateTokens = (userId) => {
 
 /* REGISTER */
 
-router.post("/register", async (req, res) => {
-
+router.post("/register", authLimiter, async (req, res) => {
   try {
-
     const { email, username, password } = req.body;
 
     if (!email || !username || !password) {
@@ -56,25 +64,19 @@ router.post("/register", async (req, res) => {
       token: accessToken,
       refreshToken
     });
-
   } catch (err) {
-
     console.error(err);
     if (err.code === "23505") {
       return res.status(409).json({ error: "Bu e-posta veya kullanıcı adı zaten kullanımda." });
     }
     res.status(500).json({ error: "Kayıt işlemi başarısız oldu." });
-
   }
-
 });
 
 /* LOGIN */
 
-router.post("/login", async (req, res) => {
-
+router.post("/login", authLimiter, async (req, res) => {
   try {
-
     const { email, password } = req.body;
 
     if (!email || !password) {
@@ -112,14 +114,10 @@ router.post("/login", async (req, res) => {
       token: accessToken,
       refreshToken
     });
-
   } catch (err) {
-
     console.error(err);
     res.status(500).json({ error: "Giriş işlemi başarısız oldu." });
-
   }
-
 });
 
 /* REFRESH TOKEN */
