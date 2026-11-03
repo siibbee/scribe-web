@@ -135,21 +135,22 @@
   gap: 9px;
   padding: 6px 16px 6px 8px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.14);
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  color: #FAF6F0;
+  background: #FAF6F0;
+  border: 1px solid rgba(250, 246, 240, 0.95);
+  color: #9E3E28;
   font-size: 11.5px;
   font-weight: 800;
   letter-spacing: 0.8px;
   margin-bottom: 20px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
 }
 
 .badge-monogram {
   width: 24px;
   height: 24px;
   border-radius: 7px;
-  background: #F6E6DC;
-  color: #9E3E28;
+  background: #9E3E28;
+  color: #FAF6F0;
   font-family: var(--font-serif, "Playfair Display", Georgia, serif);
   font-size: 13px;
   font-weight: 900;
@@ -229,19 +230,21 @@
   gap: 8px;
   padding: 14px 24px;
   border-radius: 15px;
-  background: rgba(250, 246, 240, 0.08);
-  color: #FAF6F0;
-  font-weight: 700;
+  background: #FAF6F0;
+  color: #9E3E28;
+  font-weight: 800;
   font-size: 14.5px;
   cursor: pointer;
-  border: 1px solid rgba(246, 230, 220, 0.25);
+  border: none;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
   transition: all 0.25s ease;
 }
 
 .banner-btn-secondary:hover {
-  background: rgba(250, 246, 240, 0.16);
-  border-color: rgba(246, 230, 220, 0.45);
+  background: #FFFFFF;
+  color: #782B19;
   transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
 }
 
 /* Hero Sağ Vitrin Kartı */
@@ -444,11 +447,11 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  background: #9E3E28;
-  border: 1px solid #782B19;
-  padding: 8px 13px;
-  border-radius: 15px;
-  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.38);
+  background: #FAF6F0;
+  border: 1px solid rgba(232, 221, 209, 0.9);
+  padding: 8px 14px;
+  border-radius: 16px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.26);
   pointer-events: none;
   z-index: 3;
 }
@@ -498,12 +501,13 @@
 .badge-head {
   font-size: 11.5px;
   font-weight: 800;
-  color: #FAF6F0;
+  color: #9E3E28;
 }
 
 .badge-sub {
-  font-size: 10px;
-  color: #9C8B80;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #65544B;
 }
 
 /* ================= OKUMA MASAN (CONTINUE READING CARD) ================= */
