@@ -129,7 +129,7 @@
   width: 52px;
   height: 52px;
   border-radius: 14px;
-  background: #5E3C2C;
+  background: #9E3E28;
   border: 1.5px solid var(--primary-color);
   color: #FAF6F0;
   font-family: var(--font-serif);
@@ -294,7 +294,7 @@
 .addbook-toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
 
 .addbook-toast.success {
-  background: #5E3C2C;
+  background: #9E3E28;
   border-left: 4px solid var(--primary-color);
   color: #FAF6F0;
 }

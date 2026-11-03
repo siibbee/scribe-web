@@ -1,8 +1,8 @@
 /* src/components/footer.css - Scribe Editorial Dark Espresso Footer */
 
 .footer-banner {
-  background-color: var(--espresso-bg, #5E3C2C);
-  border-top: 1px solid #35261F;
+  background-color: var(--espresso-bg, #9E3E28);
+  border-top: 1px solid #782B19;
   color: #FAF6F0;
   padding: 80px 0 96px;
   position: relative;

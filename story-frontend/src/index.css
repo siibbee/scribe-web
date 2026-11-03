@@ -9,8 +9,8 @@ body[data-theme='light'] {
   --bg-secondary: #F1E8DD;      /* İkincil Keten Dokulu Zemin (creamDark) */
   --bg-selected: #F6E6DC;       /* Yumuşak Gül Kumu (sageLight / softPeach) */
   --card-bg: #FFFFFF;           /* Saf Fildişi (card / white) */
-  --espresso-bg: #5E3C2C;       /* Sıcak Kahve Vitrin Kartı & Footer Zemini (espresso) */
-  --espresso-border: #35261F;
+  --espresso-bg: #9E3E28;       /* Sıcak Kahve Vitrin Kartı & Footer Zemini (espresso) */
+  --espresso-border: #782B19;
 
   --text-primary: #1E1511;      /* Koyu Espresso Mürekkep (charcoal) */
   --text-secondary: #65544B;    /* Sıcak Umber (textSecondary) */
