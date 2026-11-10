@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /profile
+Disallow: /add-book
+
+Sitemap: https://scribetr.com/sitemap.xml
